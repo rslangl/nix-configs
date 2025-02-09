@@ -98,6 +98,15 @@
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
+    shellAliases = {
+      ls="ls --color=auto";
+      la="ls -la";
+      ll="ls -l";
+      wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts";
+      sbt="sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_DATA_HOME/sbt";
+      mvn="mvn -gs $XDG_CONFIG_HOME/maven/settings.xml";
+      nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings";
+    };
   };
 
   wayland.windowManager.hyprland.settings = {
@@ -114,7 +123,7 @@
     ] ++ (
       # workspaces
       # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-      builtins.concatList (builtins.genList (i:
+      builtins.concatLists (builtins.genList (i:
         let ws = i + 1;
 	in [
 	    "$mod, code:1${toString i}, workspace, ${toString ws}"

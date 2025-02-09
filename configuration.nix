@@ -76,7 +76,7 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    shell = pkgs.zsh;
+    #shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
   #   packages = with pkgs; [
   #     home-manager
@@ -93,9 +93,9 @@
 
   services.getty.autologinUser = "user";
 
-  programs.zsh = {
-    enable = true;
-  };
+  #programs.zsh = {
+  #  enable = true;
+  #};
 
   programs.firefox.enable = true;
 
@@ -123,6 +123,7 @@
     curl
     wget
     git
+    zsh
     hyprland
     hyprlock				# lock
     nwg-dock-hyprland			# dock
