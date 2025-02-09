@@ -98,6 +98,11 @@
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
+    shellAliases = {
+      ls="ls --color=auto";
+      la="ls -la";
+      ll="ls -l";
+    };
   };
 
   wayland.windowManager.hyprland.settings = {
