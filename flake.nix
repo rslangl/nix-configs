@@ -28,7 +28,7 @@
               home-manager.useGlobalPkgs = true;
               # install packages to /etc/profiles/ rather than $HOME/.nix-profile
               home-manager.useUserPackages = true;
-              home-manager.users.user = import $HOME/.config/home-manager/home.nix;
+              #home-manager.users.user = import $HOME/.config/home-manager/home.nix;
             }
       ];
     };
