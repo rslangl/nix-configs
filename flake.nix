@@ -20,9 +20,16 @@
       #extraSpecialArgs = {inherit inputs system;};
       specialArgs = {inherit inputs system;};
       modules = [
-	./configuration.nix
-	# ensures home-manager is enabled for all users on the system
-	home-manager.nixosModules.home-manager
+        ./configuration.nix
+          # ensures home-manager is enabled for all users on the system
+          home-manager.nixosModules.home-manager {
+              # use global packages configured via system-level nixpkgs rather
+              # than a private pkgs instance
+              home-manager.useGlobalPkgs = true;
+              # install packages to /etc/profiles/ rather than $HOME/.nix-profile
+              home-manager.useUserPackages = true;
+              home-manager.users.user = import $HOME/.config/home-manager/home.nix
+            }
       ];
     };
 
