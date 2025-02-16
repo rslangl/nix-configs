@@ -137,10 +137,10 @@
     firefox
     gvfs
     starship				# shell prompt
-	pyprland
-	libsForQt5.qt5ct
-	nitch
-	fd
+    pyprland
+    libsForQt5.qt5ct
+    nitch
+    fd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
