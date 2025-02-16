@@ -73,10 +73,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  users.defaultUserShell = pkgs.zsh;
+
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    #shell = pkgs.zsh;
+    useDefaultShell = true;
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
   #   packages = with pkgs; [
   #     home-manager
@@ -93,9 +95,9 @@
 
   services.getty.autologinUser = "user";
 
-  #programs.zsh = {
-  #  enable = true;
-  #};
+  programs.zsh = {
+   enable = true;
+  };
 
   programs.firefox.enable = true;
 
