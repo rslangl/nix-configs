@@ -9,15 +9,17 @@
   home.packages = with pkgs; [
     neovim
     fzf
+    oh-my-zsh
     ripgrep
-    pay-respects        # command-not-found tool
+    pay-respects  # command-not-found tool
     signal-desktop
     btop
     tree
+    keychain
     zoxide
     mpv
-    zathura		# PDF reader
-    grimblast		# screencap
+    zathura # PDF reader
+    grimblast # screencap
     imagemagick
     ffmpeg
     ffmpegthumbnailer
@@ -97,7 +99,9 @@
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     enableCompletion = true;
+    autocd = true;
     shellAliases = {
       ls="ls --color=auto";
       la="ls -la";
@@ -106,6 +110,28 @@
       sbt="sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_DATA_HOME/sbt";
       mvn="mvn -gs $XDG_CONFIG_HOME/maven/settings.xml";
       nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings";
+    };
+    dirHashes = {
+      dev = "$HOME/dev";
+      dl = "$HOME/tmp";
+    };
+    dotDir = ".config/zsh";
+    # extra commands to be added to .zshenv
+    envExtra = 
+      "export RUSTUP_HOME=${config.xdg.dataHome}/rustup\n
+       export CARGO_HOME=${config.xdg.dataHome}/cargo";
+    # extra commands to be added to .zshrc
+    initExtra =
+      "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
+       eval \"$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval --agents ssh ~/.ssh/github --quiet)\"";
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "sudo"
+        "fzf"
+      ];
+      theme = "bira";
     };
   };
 

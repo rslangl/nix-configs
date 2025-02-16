@@ -73,10 +73,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  users.defaultUserShell = pkgs.zsh;
+
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    #shell = pkgs.zsh;
+    useDefaultShell = true;
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
   #   packages = with pkgs; [
   #     home-manager
@@ -93,9 +95,9 @@
 
   services.getty.autologinUser = "user";
 
-  #programs.zsh = {
-  #  enable = true;
-  #};
+  programs.zsh = {
+   enable = true;
+  };
 
   programs.firefox.enable = true;
 
@@ -137,10 +139,10 @@
     firefox
     gvfs
     starship				# shell prompt
-	pyprland
-	libsForQt5.qt5ct
-	nitch
-	fd
+    pyprland
+    libsForQt5.qt5ct
+    nitch
+    fd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
