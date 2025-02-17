@@ -25,6 +25,8 @@
     ffmpegthumbnailer
     swww
     python3
+    adwaita-icon-theme
+    solarc-gtk-theme
     
 
     #(btop.override { settings = { color_theme = "gruvbox_dark_v2"; vim_keys = true; }; } )
@@ -80,12 +82,34 @@
     userName = "rslangl";
   };
 
-  # TODO: Theme: Adwaita [GTK2], Swee-Dark [GTK3]
-  # TODO: Icons: Adwaita [GTK2/3]
-  # TODO: causes error
-  # gtk = {
-  #   enable = true;
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   package = pkgs.bibata-cursors;
+  #   name = "Bibata-Modern-Classic";
+  #   size = 16;
   # };
+
+  gtk = {
+    enable = true;
+
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 16;
+    };
+
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    theme = {
+      package = pkgs.gnome-themes-extra;
+      name = "Adwaita";
+    };
+
+    # TODO:: Terminal font: JetBrains Mono
+  };
 
   xdg.mimeApps.defaultApplications = {
     "text/plain" = [ "nvim.desktop" ];
