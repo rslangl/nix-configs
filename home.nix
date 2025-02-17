@@ -191,6 +191,7 @@
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     bind = [
+      "$mod, L, exec, hyprlock" # lock screen
       "$mod, D, exec, rofi -show drun"		# launch app-launcher
       "$mod, Return, exec, wezterm"		# launch terminal
       "$mod, Q, killactive"			# kill active window
