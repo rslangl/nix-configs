@@ -161,6 +161,53 @@
     };
   };
 
+  programs.waybar = {
+    enable = true;
+    settings = {
+        mainBar = {
+          layer = "top";
+          position = "top";
+          height = 30;
+
+          modules-left = [ 
+            "hyprland/workspaces" 
+          ];
+
+          modules-center = [ 
+            "clock" 
+          ];
+
+          modules-right = [
+            "pulseaudio"
+            "network" 
+            "cpu" 
+            "memory" 
+            "tray"
+            "group/time"
+          ];
+        };
+    };
+    style = 
+      "* {
+        padding: 0;
+        border-radius: 0;
+        min-height: 0;
+        margin: 0;
+        border: none;
+        text-shadow: none;
+        transition: none;
+        box-shadow: none;
+      }
+
+      window#waybar {
+        background: #3c3835;
+        color: #fff4d2;
+        padding-right: 9px;
+        padding-left: 5px;
+        margin: 0;
+      }";
+  };
+
   programs.hyprlock = {
     enable = true;
   };
