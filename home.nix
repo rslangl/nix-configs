@@ -120,6 +120,8 @@
     envExtra = 
       "export RUSTUP_HOME=${config.xdg.dataHome}/rustup\n
        export CARGO_HOME=${config.xdg.dataHome}/cargo";
+    # extra commands to be added to .zprofile
+    profileExtra = "[[ "$(tty)" == "/dev/tty1" ]] && exec Hyprland";
     # extra commands to be added to .zshrc
     initExtra =
       "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
