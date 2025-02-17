@@ -138,7 +138,7 @@
     wl-clipboard
     firefox
     gvfs
-    starship				# shell prompt
+    #starship				# shell prompt
     pyprland
     libsForQt5.qt5ct
     nitch
