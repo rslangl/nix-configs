@@ -164,48 +164,66 @@
   programs.waybar = {
     enable = true;
     settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 30;
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
 
-          modules-left = [ 
-            "hyprland/workspaces" 
-          ];
+        modules-left = [ 
+          "hyprland/workspaces"
+          "hyprland/mode"
+        ];
 
-          modules-center = [ 
-            "clock" 
-          ];
+        modules-center = [ 
+          "hyprland/window"
+        ];
 
-          modules-right = [
-            "pulseaudio"
-            "network" 
-            "cpu" 
-            "memory" 
-            "tray"
-            "group/time"
-          ];
+        modules-right = [
+          "network"
+          "cpu"
+          "memory"
+          "disk"
+          "pulseaudio"
+          "clock#date"
+          "clock#time"
+          "hyprland/powermenu"
+        ];
+
+        "clock#time" = {
+          interval = 1;
+          format = "{:%H:%M:%S}";
+          tooltip = false;
         };
-    };
-    style = 
-      "* {
-        padding: 0;
-        border-radius: 0;
-        min-height: 0;
-        margin: 0;
-        border: none;
-        text-shadow: none;
-        transition: none;
-        box-shadow: none;
-      }
 
-      window#waybar {
-        background: #3c3835;
-        color: #fff4d2;
-        padding-right: 9px;
-        padding-left: 5px;
-        margin: 0;
-      }";
+        "clock#date" = {
+          format = "{:%e %b %Y}";
+          tooltip-format = "{:%e %B %Y}";
+        };
+
+        "cpu" = {
+          format = "{usage}% CPU";
+          tooltip = false;
+        };
+
+        "memory" = {
+          format = "{used} / {total} GB";
+        };
+
+        "network" = {
+          format-ethernet = "{ifname}: {ipaddr}/{cidr} {down}↓ {up}↑";
+          format-disconnected = "Disconnected";
+          format-alt = "{ifname}: {ipaddr}/{cidr} {down}↓ {up}↑";
+          tooltip-format = "{ifname} via {gwaddr}";
+        };
+
+        "disk" = {
+          format = "Disk: {used} / {total}";
+          tooltip = false;
+        };
+      };
+    };
+
+    #style = {};
   };
 
   programs.hyprlock = {
