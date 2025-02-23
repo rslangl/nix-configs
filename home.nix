@@ -203,12 +203,12 @@
         };
 
         "cpu" = {
-          format = "{usage}% CPU";
+          format = "CPU: {usage}%";
           tooltip = false;
         };
 
         "memory" = {
-          format = "{used} / {total} GB";
+          format = "Mem: {used}/{total} GB {icon}";
         };
 
         "network" = {
@@ -219,200 +219,93 @@
         };
 
         "disk" = {
-          format = "Disk: {used} / {total}";
+          format = "Disk: {used} / {total} GB";
           tooltip = false;
+        };
+        "pulseaudio" = {
+          format = "Audio: {volume:2}% {icon}";
+          format-muted = "MUTE";
+          format-icons = {
+
+          };
+          scroll-step = "5";
+          on-click = "pamixer -t";
+          on-click-right = "pavucontrol";
         };
       };
     };
 
     style = ''
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-@keyframes blink-warning {
-    70% {
-        color: white;
-    }
-
-    to {
-        color: white;
-        background-color: orange;
-    }
-}
-
-@keyframes blink-critical {
-    70% {
-      color: white;
-    }
-
-    to {
-        color: white;
-        background-color: red;
-    }
-}
-
-
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
 }
 
-/* The whole bar */
-#waybar {
-    background: #323232;
-    color: white;
-    font-family: Cantarell, Noto Sans, sans-serif;
-    font-size: 13px;
+window#waybar {
+  background-color: #292b2e;
+  color: #fdf6e3;
 }
 
-/* Each module */
-#battery,
-#clock,
-#cpu,
-#custom-keyboard-layout,
-#memory,
-#mode,
-#network,
+#custom-right-arrow-dark,
+#custom-left-arrow-dark {
+	color: #1a1a1a;
+}
+#custom-right-arrow-light,
+#custom-left-arrow-light {
+	color: #292b2e;
+	background: #1a1a1a;
+}
+
+#workspaces,
+#clock.1,
+#clock.2,
+#clock.3,
 #pulseaudio,
-#temperature,
+#memory,
+#cpu,
+#disk,
 #tray {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
-
-#battery {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#battery.warning {
-    color: orange;
-}
-
-#battery.critical {
-    color: red;
-}
-
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-}
-
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-#clock {
-    font-weight: bold;
-}
-
-#cpu {
-  /* No styles */
-}
-
-#cpu.warning {
-    color: orange;
-}
-
-#cpu.critical {
-    color: red;
-}
-
-#memory {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#memory.warning {
-    color: orange;
-}
-
-#memory.critical {
-    color: red;
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-#mode {
-    background: #64727D;
-    border-top: 2px solid white;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-}
-
-#network {
-    /* No styles */
-}
-
-#network.disconnected {
-    color: orange;
-}
-
-#pulseaudio {
-    /* No styles */
-}
-
-#pulseaudio.muted {
-    /* No styles */
-}
-
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
-#temperature {
-    /* No styles */
-}
-
-#temperature.critical {
-    color: red;
-}
-
-#tray {
-    /* No styles */
-}
-
-#window {
-    font-weight: bold;
+	background: #1a1a1a;
 }
 
 #workspaces button {
-    border-top: 2px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #888888;
+	padding: 0 2px;
+	color: #fdf6e3;
 }
-
 #workspaces button.focused {
-    border-color: #4c7899;
-    color: white;
-    background-color: #285577;
+	color: #268bd2;
+}
+#workspaces button:hover {
+	box-shadow: inherit;
+	text-shadow: inherit;
+}
+#workspaces button:hover {
+	background: #1a1a1a;
+	border: #1a1a1a;
+	padding: 0 3px;
 }
 
-#workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+#pulseaudio {
+	color: #268bd2;
 }
-      '';
+#memory {
+	color: #2aa198;
+}
+#cpu {
+	color: #6c71c4;
+}
+#disk {
+	color: #b58900;
+}
+
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#disk {
+	padding: 0 10px;
+}
+    '';
   };
 
   programs.hyprlock = {
@@ -451,6 +344,7 @@
       "$term" = "wezterm";
       "$menu" = "rofi -show drun";
       exec-once = [
+        "waybar"
         "swww init"
       ];
       bind = [
@@ -477,6 +371,7 @@
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
       "$mod SHIFT, 4, movetoworkspace, 5"
+# TODO: swap window positions
 
       # screencap
       "$mod SHIFT, S, exec, grimblast copy area"
