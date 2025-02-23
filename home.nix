@@ -193,29 +193,31 @@
 
         "clock#time" = {
           interval = 1;
-          format = "{:%H:%M:%S}";
+          format = "{:%H:%M:%S}  ";
           tooltip = false;
         };
 
         "clock#date" = {
-          format = "{:%e %b %Y}";
+          format = "{:%e %b %Y} ";
           tooltip-format = "{:%e %B %Y}";
         };
 
         "cpu" = {
-          format = "CPU: {usage}%";
+          format = "CPU: {usage}%  ";
           tooltip = false;
         };
 
         "memory" = {
-          format = "Mem: {used}/{total} GB {icon}";
+          format = "Mem: {used}/{total} GB {icon}  ";
         };
 
         "network" = {
-          format-ethernet = "{ifname}: {ipaddr}/{cidr} {down}↓ {up}↑";
+          interface = "enp7s0";
+          format-ethernet = "{ifname}: {ipaddr}/{cidr} {bandwidthDownBits}↓ {bandwidthUpBits}↑";
           format-disconnected = "Disconnected";
-          format-alt = "{ifname}: {ipaddr}/{cidr} {down}↓ {up}↑";
+          #format-alt = "{ifname}: {ipaddr}/{cidr} {down}↓ {up}↑";
           tooltip-format = "{ifname} via {gwaddr}";
+          interval = 1;
         };
 
         "disk" = {
@@ -223,7 +225,7 @@
           tooltip = false;
         };
         "pulseaudio" = {
-          format = "Audio: {volume:2}% {icon}";
+          format = "Audio: {volume:2}% ";
           format-muted = "MUTE";
           format-icons = {
 
