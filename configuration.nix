@@ -93,7 +93,7 @@
   # };
   #};
 
-  services.getty.autologinUser = "user";
+  #services.getty.autologinUser = "user";
 
   programs.zsh = {
    enable = true;
@@ -101,11 +101,11 @@
 
   programs.firefox.enable = true;
 
-  programs.hyprland = {
-    enable = true;
+  #programs.hyprland = {
+    #enable = true;
     #nvidiaPatches = true;
-    xwayland.enable = true;
-  };
+    #xwayland.enable = true;
+  #};
 
   environment.sessionVariables = {
     # if cursor becomes invisible
@@ -127,22 +127,21 @@
     git
     zsh
     hyprland
-    hyprlock				# lock
-    nwg-dock-hyprland			# dock
-    wezterm				# terminal emulator
-    kitty				# default terminal for hyprland
-    waybar				# status bar
-    dunst				# notifications
+    hyprlock
+    nwg-dock-hyprland
+    wezterm 
+    kitty
+    waybar
+    dunst
     libnotify
-    rofi-wayland			# app launcher
+    rofi-wayland
     wl-clipboard
     firefox
     gvfs
-    #starship				# shell prompt
     pyprland
-    libsForQt5.qt5ct
     nitch
     fd
+    dconf
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
