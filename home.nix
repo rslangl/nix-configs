@@ -185,6 +185,16 @@
             mods = "CTRL|SHIFT",
             action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
           },
+          {
+            key = "Tab",
+            mods = "CTRL",
+            action = wezterm.action{ActivateTabRelative = 1 },
+          },
+          {
+            key = "Tab",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action{ActivateTabRelative = -1 },
+          },
         };
         window_padding = {
           left = 0;
