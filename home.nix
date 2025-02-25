@@ -545,5 +545,38 @@ window#waybar {
     }; 
   };
 
+  programs.firefox = {
+    enable = true;
+    policies = {
+      DefaultDownloadDirectory = "$HOME/tmp";
+    };
+    profiles = {
+      # NOTE: bookmarks takes the form (for one item), see also https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.profiles._name_.bookmarks:
+      # {
+      #   name = "wikipedia";
+      #   tags = ["wiki"];
+      #   keyword = "wiki";
+      #   url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+      # }
+      bookmarks = [
+
+      ];
+      extensions = {
+        packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+        ];
+        settings."uBlock0@raymondhill.net".settings = {
+          selectedFilterLists = [
+            "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-unbreak"
+              "ublock-quick-fixes"
+          ];
+        };
+      };
+    };
+  };
+
   programs.home-manager.enable = true;
 }
