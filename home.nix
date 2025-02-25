@@ -164,8 +164,14 @@
   };
 
   programs.wezterm = {
-      enable = true;
-    }
+    enable = true;
+    enableZshIntegration = true;
+    extraConfig = ''
+      return {
+        color_scheme = "Catppuccin Mocha";
+      }
+    '';
+  };
 
   programs.waybar = {
     enable = true;
