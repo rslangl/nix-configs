@@ -163,6 +163,70 @@
     };
   };
 
+  programs.wezterm = {
+    enable = true;
+    enableZshIntegration = true;
+    extraConfig = ''
+      return {
+        keys = {
+          {
+            key = "T",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action{SpawnTab = "DefaultDomain" },
+          },
+          {
+            key = "E",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
+          },
+          {
+            key = "O",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
+          },
+          {
+            key = "Tab",
+            mods = "CTRL",
+            action = wezterm.action{ActivateTabRelative = 1 },
+          },
+          {
+            key = "Tab",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action{ActivateTabRelative = -1 },
+          },
+          {
+            key = "h",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Left" },
+          },
+          {
+            key = "j",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Down" },
+          },
+          {
+            key = "k",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Up" },
+          },
+          {
+            key = "l",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Right" },
+          },
+        };
+        window_padding = {
+          left = 0;
+          bottom = 0;
+          right = 0;
+          top = 0;
+        };
+        window_background_opacity = 0.2;
+        color_scheme = "Catppuccin Mocha";
+      }
+    '';
+  };
+
   programs.waybar = {
     enable = true;
     settings = {
