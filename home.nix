@@ -120,6 +120,19 @@
     "video/*" = [ "mpv.desktop" ];
   };
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    desktop = "${config.home.homeDirectory}";
+    documents = "${config.home.homeDirectory}/docs";
+    download = "${config.home.homeDirectory}/tmp";
+    music = "${config.home.homeDirectory}/self/music";
+    pictures = "${config.home.homeDirectory}/self/pics";
+    publicShare = "${config.home.homeDirectory}/share";
+    templates = "${config.home.homeDirectory}";
+    videos = "${config.home.homeDirectory}/self/vids";
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -136,8 +149,21 @@
       nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings";
     };
     dirHashes = {
-      dev = "$HOME/dev";
-      dl = "$HOME/tmp";
+      dev = "$HOME/dev";  # base development folder
+      dev_co = "$HOME/dev/co";  # checkout  other sources
+      dev_re = "$HOME/dev/re"; # reverse engineering
+      dev_sw = "$HOME/dev/sw";  # main software projects
+      mails = "$HOME/mail";
+      vm = "$HOME/vm"; # virtual machines
+      docs = "$HOME/docs";  # base docs folder
+      docs_art = "$HOME/docs/art";
+      docs_tech = "$HOME/docs/tech";
+      docs_sci = "$HOME/docs/sci";
+      docs_lang = "$HOME/docs/lang";
+      share = "$HOME/share";
+      share_cast = "$HOME/share/cast";  # podcasts
+      share_seed = "$HOME/share/seed";  # torrents
+      share_lect = "$HOME/share/lect";  # lectures
     };
     dotDir = ".config/zsh";
     # extra commands to be added to .zshenv
