@@ -172,14 +172,13 @@
           {
             key = "T",
             mods = "CTRL|SHIFT",
-            action = wezterm.action.{SpawnTab = "DefaultDomain" },
+            action = wezterm.action{SpawnTab = "DefaultDomain" },
           },
           {
             key = "E",
             mods = "CTRL|SHIFT",
             action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
           },
-          -- NOTE: default close is CTRL+SHIFT+W
           {
             key = "O",
             mods = "CTRL|SHIFT",
@@ -194,6 +193,26 @@
             key = "Tab",
             mods = "CTRL|SHIFT",
             action = wezterm.action{ActivateTabRelative = -1 },
+          },
+          {
+            key = "h",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Left" },
+          },
+          {
+            key = "j",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Down" },
+          },
+          {
+            key = "k",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Up" },
+          },
+          {
+            key = "l",
+            mods = "ALT",
+            action = wezterm.action{ActivatePaneDirection = "Right" },
           },
         };
         window_padding = {
