@@ -84,19 +84,19 @@
     userName = "rslangl";
   };
 
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   package = pkgs.bibata-cursors;
-  #   name = "Bibata-Modern-Classic";
-  #   size = 16;
-  # };
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 16;
+  };
 
   gtk = {
     enable = true;
 
     cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
       size = 16;
     };
 
@@ -109,8 +109,6 @@
       package = pkgs.gnome-themes-extra;
       name = "Adwaita";
     };
-
-    # TODO:: Terminal font: JetBrains Mono
   };
 
   xdg.mimeApps.defaultApplications = {
