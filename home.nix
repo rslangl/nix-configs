@@ -168,19 +168,18 @@
     enableZshIntegration = true;
     extraConfig = ''
       return {
-        --leader = {
-        --  key = 'a',
-        --  mods = 'CTRL',
-        --  timeout_milliseconds = 1000
-        --};
         keys = {
-          -- TODO: new tab (CTRL+N)
-          -- TODO: cycle tabs (CTRL+TAB)
+          {
+            key = "T",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.{SpawnTab = "DefaultDomain" },
+          },
           {
             key = "E",
             mods = "CTRL|SHIFT",
             action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
           },
+          -- NOTE: default close is CTRL+SHIFT+W
           {
             key = "O",
             mods = "CTRL|SHIFT",
