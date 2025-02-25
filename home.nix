@@ -421,8 +421,6 @@ window#waybar {
       "$mod, V, togglefloating"
       "$mod, Tab, cyclenext"
       "$mod SHIFT, Tab, cyclenext, prev"
-      "$mod, Left, focuswindow, left"
-      "$mod, Right, focuswindow, right"
 
       # workspaces
       "$mod, 1, workspace, 1"
@@ -435,7 +433,10 @@ window#waybar {
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
       "$mod SHIFT, 4, movetoworkspace, 5"
-# TODO: swap window positions
+      "$mod, left, movewindow, l"
+      "$mod, right, movewindow, r"
+      "$mod, up, movewindow, u"
+      "$mod, down, movewindow, d"
 
       # screencap
       "$mod SHIFT, S, exec, grimblast copy area"
@@ -460,10 +461,7 @@ window#waybar {
         border_size = 2;
         layout = "dwindle";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        #coltactive_border = "#33ccffee #00ff99ee 45deg";
-        #"col.inactive_border" = "rgba(595959aa)";
         "col.inactive_border" = "00x595959aa";
-        #col.inactive_border = "#595959aa";
         resize_on_border = false;
         allow_tearing = false;
       };
