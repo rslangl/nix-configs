@@ -168,6 +168,25 @@
     enableZshIntegration = true;
     extraConfig = ''
       return {
+        --leader = {
+        --  key = 'a',
+        --  mods = 'CTRL',
+        --  timeout_milliseconds = 1000
+        --};
+        keys = {
+          -- TODO: new tab (CTRL+N)
+          -- TODO: cycle tabs (CTRL+TAB)
+          {
+            key = "E",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
+          },
+          {
+            key = "O",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
+          },
+        };
         window_padding = {
           left = 0;
           bottom = 0;
