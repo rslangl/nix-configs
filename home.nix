@@ -551,28 +551,51 @@ window#waybar {
       DefaultDownloadDirectory = "$HOME/tmp";
     };
     profiles = {
-      # NOTE: bookmarks takes the form (for one item), see also https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.profiles._name_.bookmarks:
-      # {
-      #   name = "wikipedia";
-      #   tags = ["wiki"];
-      #   keyword = "wiki";
-      #   url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
-      # }
-      bookmarks = [
-
-      ];
-      extensions = {
-        packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-        ];
-        settings."uBlock0@raymondhill.net".settings = {
-          selectedFilterLists = [
-            "ublock-filters"
-              "ublock-badware"
-              "ublock-privacy"
-              "ublock-unbreak"
-              "ublock-quick-fixes"
+      default = {
+        id = 0;
+        name = "default";
+        bookmarks = [
+        {
+          name = "searx";
+          tags = ["search" "searx"];
+          keyword = "searx";
+          url = "";
+        }
+        {
+          name = "wikipedia";
+          tags = ["wiki"];
+          keyword = "wiki";
+          url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+        }
+        {
+          name = "Nix";
+          toolbar = true;
+          bookmarks = [
+            {
+              name = "wiki";
+              tags = [ "wiki" "nix" ];
+              url = "https://wiki.nixos.org/";
+            }
+            {
+              name = "packages";
+              tags = ["packages" "nix"];
+              url = "https://search.nixos.org/packages";
+            }
           ];
+        }
+        ];
+        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        #   ublock-origin
+        #   privacy-badger
+        #   decentraleyes
+        #   clearurls
+        #   disconnect
+        #   darkreader
+        #   cookie-autodelete
+        #   vimium
+        # ];
+        search = {
+          default = "DuckDuckGo";
         };
       };
     };
