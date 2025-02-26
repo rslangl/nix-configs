@@ -478,11 +478,15 @@ window#waybar {
       "$mod SHIFT, 2, movetoworkspace, 2"
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
-      "$mod SHIFT, 4, movetoworkspace, 5"
+      "$mod SHIFT, 5, movetoworkspace, 5"
       "$mod, left, movewindow, l"
       "$mod, right, movewindow, r"
       "$mod, up, movewindow, u"
       "$mod, down, movewindow, d"
+      "$mod SHIFT, H, resizeactive, -10 0"
+      "$mod SHIFT, J, resizeactive, 0 10"
+      "$mod SHIFT, K, resizeactive, 0 -10"
+      "$mod SHIFT, L, resizeactive, 10 0"
 
       # screencap
       "$mod SHIFT, S, exec, grimblast copy area"
