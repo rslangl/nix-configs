@@ -238,6 +238,26 @@
             mods = "ALT",
             action = wezterm.action{ActivatePaneDirection = "Right" },
           },
+          {
+            key = "h",
+            mods = "ALT|SHIFT",
+            action = wezterm.action{AdjustPaneSize = {"Left", 2} },
+          },
+          {
+            key = "j",
+            mods = "ALT|SHIFT",
+            action = wezterm.action{AdjustPaneSize = {"Down", 2} },
+          },
+          {
+            key = "k",
+            mods = "ALT|SHIFT",
+            action = wezterm.action{AdjustPaneSize = {"Up", 2} },
+          },
+          {
+            key = "l",
+            mods = "ALT|SHIFT",
+            action = wezterm.action{AdjustPaneSize = {"Right", 2} },
+          }
         };
         window_padding = {
           left = 0;
