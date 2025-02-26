@@ -46,4 +46,8 @@ home-manager switch
 * `ALT+SHIFT+j`: Resize terminal pane down
 * `ALT+SHIFT+k`: Resize terminal pane up
 * `ALT+SHIFT+l`: Resize terminal pane right
+* `SUPER+SHIFT+h`: Resize window left
+* `SUPER+SHIFT+j`: Resize window down
+* `SUPER+SHIFT+k`: Resize window up
+* `SUPER+SHIFT+l`: Resize window right
 * <u>TODO</u>: audio, volume increase/decrease/mute
