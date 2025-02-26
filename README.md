@@ -42,4 +42,8 @@ home-manager switch
 * `SUPER+CTRL+S`: Launch grimblast to copy screen
 * `SUPER+1`: Switch to workspace 1 (up to 5)
 * `SUPER+SHIFT+1`: Move active window to workspace 1 (up to 5)
+* `ALT+SHIFT+h`: Resize terminal pane left
+* `ALT+SHIFT+j`: Resize terminal pane down
+* `ALT+SHIFT+k`: Resize terminal pane up
+* `ALT+SHIFT+l`: Resize terminal pane right
 * <u>TODO</u>: audio, volume increase/decrease/mute
