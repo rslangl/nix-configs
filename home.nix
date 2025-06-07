@@ -30,6 +30,12 @@
     swww
     python3
     adwaita-icon-theme
+    vesktop
+    tealdeer # tldr for man pages
+    cht.sh # CLI tool for cheat.sh
+    tldr # simplified and based man page
+    terraform
+    ansible
 
     #(btop.override { settings = { color_theme = "gruvbox_dark_v2"; vim_keys = true; }; } )
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -624,6 +630,12 @@ window#waybar {
       };
     };
   };
+
+  programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
   programs.home-manager.enable = true;
 }
