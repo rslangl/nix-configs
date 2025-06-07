@@ -11,6 +11,8 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Enable nested virtualisation
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
 
   networking.hostName = "mechromancer";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -43,6 +45,22 @@
   #  layout = "no";
   #  variant = "";
   #};
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+	packages = [(pkgs.OVMF.override {
+          secureBoot = true;
+	  tpmSupport = true;
+	}).fd];
+      };
+    };
+  };
 
   console.keyMap = "no";
 
@@ -79,7 +97,7 @@
     isNormalUser = true;
     description = "user";
     useDefaultShell = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" ];
   #   packages = with pkgs; [
   #     home-manager
   #   ];
