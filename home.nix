@@ -35,6 +35,8 @@
     cht-sh # CLI tool for cheat.sh
     terraform
     ansible
+    k3d
+    rustup
 
     #(btop.override { settings = { color_theme = "gruvbox_dark_v2"; vim_keys = true; }; } )
     # # It is sometimes useful to fine-tune packages, for example, by applying
