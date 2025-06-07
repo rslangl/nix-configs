@@ -32,8 +32,7 @@
     adwaita-icon-theme
     vesktop
     tealdeer # tldr for man pages
-    cht.sh # CLI tool for cheat.sh
-    tldr # simplified and based man page
+    cht-sh # CLI tool for cheat.sh
     terraform
     ansible
 
