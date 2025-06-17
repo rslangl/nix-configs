@@ -33,10 +33,13 @@
     vesktop
     tealdeer # tldr for man pages
     cht-sh # CLI tool for cheat.sh
+    lua-language-server
     terraform
     ansible
     k3d
     rustup
+    gcc
+    docker
 
     #(btop.override { settings = { color_theme = "gruvbox_dark_v2"; vim_keys = true; }; } )
     # # It is sometimes useful to fine-tune packages, for example, by applying
