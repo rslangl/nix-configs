@@ -36,7 +36,20 @@
     lua-language-server
     ansible
     k3d
-    rustup
+    #rustup
+      rust-analyzer
+      gopls
+      shfmt
+      shellcheck
+      terraform-ls
+      ansible-language-server
+      bash-language-server
+
+      stylua
+      alejandra
+      shfmt
+      shellcheck
+      luajitPackages.luacheck
     gcc
     docker
     go
@@ -98,17 +111,10 @@
 
   programs.neovim = {
     enable = true;
-    extraPackages = with pkgs; [
-      rust-analyzer
-      gopls
-      shfmt
-      shellcheck
-      terraform-ls
-      ansible-language-server
-      bash-language-server
-    ];
     plugins = with pkgs.vimPlugins; [
+      # Plugin manager
       lazy-nvim
+      # LSP & completion
       nvim-lspconfig
         mason-nvim
         mason-lspconfig-nvim
@@ -119,9 +125,15 @@
         cmp-cmdline
         cmp_luasnip
         luasnip
+
+      # Formatters & linters
         conform-nvim
         nvim-lint
+
+      # Syntax highlighting
         nvim-treesitter
+
+      # Language-specific
         rustaceanvim
         go-nvim
     ];
