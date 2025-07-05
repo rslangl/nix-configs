@@ -11,7 +11,7 @@
   };
 
   home.packages = with pkgs; [
-    neovim
+    #neovim
     fzf
     oh-my-zsh
     ripgrep
@@ -34,12 +34,14 @@
     tealdeer # tldr for man pages
     cht-sh # CLI tool for cheat.sh
     lua-language-server
-    terraform
     ansible
     k3d
     rustup
     gcc
     docker
+    go
+    unzip
+    nodejs_20
 
     #(btop.override { settings = { color_theme = "gruvbox_dark_v2"; vim_keys = true; }; } )
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -92,6 +94,37 @@
   programs.git = {
     enable = true;
     userName = "rslangl";
+  };
+
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
+      rust-analyzer
+      gopls
+      shfmt
+      shellcheck
+      terraform-ls
+      ansible-language-server
+      bash-language-server
+    ];
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+      nvim-lspconfig
+        mason-nvim
+        mason-lspconfig-nvim
+        nvim-cmp
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp_luasnip
+        luasnip
+        conform-nvim
+        nvim-lint
+        nvim-treesitter
+        rustaceanvim
+        go-nvim
+    ];
   };
 
   home.pointerCursor = {
