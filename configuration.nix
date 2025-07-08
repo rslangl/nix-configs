@@ -163,7 +163,10 @@
   ];
 
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.dejavu-sans-mono
+    nerd-fonts.jetbrains-mono
     #font-awesome
   ];
 
