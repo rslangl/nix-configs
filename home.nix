@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.username = "user";
   home.homeDirectory = "/home/user";
 
@@ -10,12 +13,16 @@
     layout = "no";
   };
 
+  imports = [
+    ./git.nix
+  ];
+
   home.packages = with pkgs; [
     #neovim
     fzf
     oh-my-zsh
     ripgrep
-    pay-respects  # command-not-found tool
+    pay-respects # command-not-found tool
     signal-desktop
     btop
     tree
@@ -36,20 +43,23 @@
     lua-language-server
     ansible
     k3d
+    cargo
     #rustup
-      rust-analyzer
-      gopls
-      shfmt
-      shellcheck
-      terraform-ls
-      ansible-language-server
-      bash-language-server
+    rust-analyzer
+    gopls
+    shfmt
+    rustfmt
+    shellcheck
+    terraform-ls
+    ansible-language-server
+    bash-language-server
 
-      stylua
-      alejandra
-      shfmt
-      shellcheck
-      luajitPackages.luacheck
+    stylua
+    alejandra
+    shfmt
+    shellcheck
+    luajitPackages.luacheck
+    luarocks
     gcc
     docker
     go
@@ -104,11 +114,11 @@
     EDITOR = "nvim";
   };
 
-  programs.git = {
-    enable = true;
-    userName = "rslangl";
-  };
-
+  # programs.git = {
+  #   enable = true;
+  #   userName = "rslangl";
+  # };
+  #
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -116,26 +126,26 @@
       lazy-nvim
       # LSP & completion
       nvim-lspconfig
-        mason-nvim
-        mason-lspconfig-nvim
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-buffer
-        cmp-path
-        cmp-cmdline
-        cmp_luasnip
-        luasnip
+      mason-nvim
+      mason-lspconfig-nvim
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp_luasnip
+      luasnip
 
       # Formatters & linters
-        conform-nvim
-        nvim-lint
+      conform-nvim
+      nvim-lint
 
       # Syntax highlighting
-        nvim-treesitter
+      nvim-treesitter
 
       # Language-specific
-        rustaceanvim
-        go-nvim
+      rustaceanvim
+      go-nvim
     ];
   };
 
@@ -167,12 +177,12 @@
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/plain" = [ "nvim.desktop" ];
-    "application/pdf" = [ "zathura.desktop" ];
-    "image/*" = [ "sxiv.desktop" ];
-    "video/png" = [ "mpv.desktop" ];
-    "video/jpg" = [ "mpv.desktop" ];
-    "video/*" = [ "mpv.desktop" ];
+    "text/plain" = ["nvim.desktop"];
+    "application/pdf" = ["zathura.desktop"];
+    "image/*" = ["sxiv.desktop"];
+    "video/png" = ["mpv.desktop"];
+    "video/jpg" = ["mpv.desktop"];
+    "video/*" = ["mpv.desktop"];
   };
 
   xdg.userDirs = {
@@ -195,41 +205,39 @@
     enableCompletion = true;
     autocd = true;
     shellAliases = {
-      ls="ls --color=auto";
-      la="ls -la";
-      ll="ls -l";
-      wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts";
-      sbt="sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_DATA_HOME/sbt";
-      mvn="mvn -gs $XDG_CONFIG_HOME/maven/settings.xml";
-      nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings";
+      ls = "ls --color=auto";
+      la = "ls -la";
+      ll = "ls -l";
+      wget = "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts";
+      sbt = "sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_DATA_HOME/sbt";
+      mvn = "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml";
+      nvidia-settings = "nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings";
     };
     dirHashes = {
-      dev = "$HOME/dev";  # base development folder
-      dev_co = "$HOME/dev/co";  # checkout  other sources
+      dev = "$HOME/dev"; # base development folder
+      dev_co = "$HOME/dev/co"; # checkout  other sources
       dev_re = "$HOME/dev/re"; # reverse engineering
-      dev_sw = "$HOME/dev/sw";  # main software projects
+      dev_sw = "$HOME/dev/sw"; # main software projects
       mails = "$HOME/mail";
       vm = "$HOME/vm"; # virtual machines
-      docs = "$HOME/docs";  # base docs folder
+      docs = "$HOME/docs"; # base docs folder
       docs_art = "$HOME/docs/art";
       docs_tech = "$HOME/docs/tech";
       docs_sci = "$HOME/docs/sci";
       docs_lang = "$HOME/docs/lang";
       share = "$HOME/share";
-      share_cast = "$HOME/share/cast";  # podcasts
-      share_seed = "$HOME/share/seed";  # torrents
-      share_lect = "$HOME/share/lect";  # lectures
+      share_cast = "$HOME/share/cast"; # podcasts
+      share_seed = "$HOME/share/seed"; # torrents
+      share_lect = "$HOME/share/lect"; # lectures
     };
     dotDir = ".config/zsh";
     # extra commands to be added to .zshenv
-    envExtra = 
-      "export RUSTUP_HOME=${config.xdg.dataHome}/rustup\n
+    envExtra = "export RUSTUP_HOME=${config.xdg.dataHome}/rustup\n
        export CARGO_HOME=${config.xdg.dataHome}/cargo";
     # extra commands to be added to .zprofile
     profileExtra = "[[ \"$(tty)\" == \"/dev/tty1\" ]] && exec Hyprland";
     # extra commands to be added to .zshrc
-    initExtra =
-      "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
+    initExtra = "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
        eval \"$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval --agents ssh ~/.ssh/github --quiet)\"";
     oh-my-zsh = {
       enable = true;
@@ -334,12 +342,12 @@
         position = "top";
         height = 30;
 
-        modules-left = [ 
+        modules-left = [
           "hyprland/workspaces"
           "hyprland/mode"
         ];
 
-        modules-center = [ 
+        modules-center = [
           "hyprland/window"
         ];
 
@@ -391,7 +399,6 @@
           format = "Audio: {volume:2}% ";
           format-muted = "MUTE";
           format-icons = {
-
           };
           scroll-step = "5";
           on-click = "pamixer -t";
@@ -401,75 +408,75 @@
     };
 
     style = ''
-* {
-  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px;
-}
+      * {
+        font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+        font-size: 13px;
+      }
 
-window#waybar {
-  background-color: #292b2e;
-  color: #fdf6e3;
-}
+      window#waybar {
+        background-color: #292b2e;
+        color: #fdf6e3;
+      }
 
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
-	color: #1a1a1a;
-}
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
-}
+      #custom-right-arrow-dark,
+      #custom-left-arrow-dark {
+      	color: #1a1a1a;
+      }
+      #custom-right-arrow-light,
+      #custom-left-arrow-light {
+      	color: #292b2e;
+      	background: #1a1a1a;
+      }
 
-#workspaces,
-#clock.1,
-#clock.2,
-#clock.3,
-#pulseaudio,
-#memory,
-#cpu,
-#disk,
-#tray {
-	background: #1a1a1a;
-}
+      #workspaces,
+      #clock.1,
+      #clock.2,
+      #clock.3,
+      #pulseaudio,
+      #memory,
+      #cpu,
+      #disk,
+      #tray {
+      	background: #1a1a1a;
+      }
 
-#workspaces button {
-	padding: 0 2px;
-	color: #fdf6e3;
-}
-#workspaces button.focused {
-	color: #268bd2;
-}
-#workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
-}
-#workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
-	padding: 0 3px;
-}
+      #workspaces button {
+      	padding: 0 2px;
+      	color: #fdf6e3;
+      }
+      #workspaces button.focused {
+      	color: #268bd2;
+      }
+      #workspaces button:hover {
+      	box-shadow: inherit;
+      	text-shadow: inherit;
+      }
+      #workspaces button:hover {
+      	background: #1a1a1a;
+      	border: #1a1a1a;
+      	padding: 0 3px;
+      }
 
-#pulseaudio {
-	color: #268bd2;
-}
-#memory {
-	color: #2aa198;
-}
-#cpu {
-	color: #6c71c4;
-}
-#disk {
-	color: #b58900;
-}
+      #pulseaudio {
+      	color: #268bd2;
+      }
+      #memory {
+      	color: #2aa198;
+      }
+      #cpu {
+      	color: #6c71c4;
+      }
+      #disk {
+      	color: #b58900;
+      }
 
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#disk {
-	padding: 0 10px;
-}
+      #clock,
+      #pulseaudio,
+      #memory,
+      #cpu,
+      #disk {
+      	padding: 0 10px;
+      }
     '';
   };
 
@@ -480,13 +487,13 @@ window#waybar {
   services.hypridle = {
     enable = true;
     settings = {
-        general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
-          lock_cmd = "hyprlock";
-        };
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
 
-        listener = [
+      listener = [
         {
           timeout = 900;
           on-timeout = "hyprlock";
@@ -496,7 +503,7 @@ window#waybar {
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
-        ];
+      ];
     };
   };
 
@@ -513,40 +520,40 @@ window#waybar {
         "swww init"
       ];
       bind = [
-      # principal keybinds
-      "$mod, L, exec, hyprlock"
-      "$mod, D, exec, $menu"
-      "$mod, Return, exec, $term"
-      "$mod, Q, killactive"
-      "$mod SHIFT, Q, exit"
-      "$mod, V, togglefloating"
-      "$mod, Tab, cyclenext"
-      "$mod SHIFT, Tab, cyclenext, prev"
+        # principal keybinds
+        "$mod, L, exec, hyprlock"
+        "$mod, D, exec, $menu"
+        "$mod, Return, exec, $term"
+        "$mod, Q, killactive"
+        "$mod SHIFT, Q, exit"
+        "$mod, V, togglefloating"
+        "$mod, Tab, cyclenext"
+        "$mod SHIFT, Tab, cyclenext, prev"
 
-      # workspaces
-      "$mod, 1, workspace, 1"
-      "$mod, 2, workspace, 2"
-      "$mod, 3, workspace, 3"
-      "$mod, 4, workspace, 4"
-      "$mod, 5, workspace, 5"
-      "$mod SHIFT, 1, movetoworkspace, 1"
-      "$mod SHIFT, 2, movetoworkspace, 2"
-      "$mod SHIFT, 3, movetoworkspace, 3"
-      "$mod SHIFT, 4, movetoworkspace, 4"
-      "$mod SHIFT, 5, movetoworkspace, 5"
-      "$mod, left, movewindow, l"
-      "$mod, right, movewindow, r"
-      "$mod, up, movewindow, u"
-      "$mod, down, movewindow, d"
-      "$mod SHIFT, H, resizeactive, -20 0"
-      "$mod SHIFT, J, resizeactive, 0 20"
-      "$mod SHIFT, K, resizeactive, 0 -20"
-      "$mod SHIFT, L, resizeactive, 20 0"
+        # workspaces
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
+        "$mod SHIFT, 4, movetoworkspace, 4"
+        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod, left, movewindow, l"
+        "$mod, right, movewindow, r"
+        "$mod, up, movewindow, u"
+        "$mod, down, movewindow, d"
+        "$mod SHIFT, H, resizeactive, -20 0"
+        "$mod SHIFT, J, resizeactive, 0 20"
+        "$mod SHIFT, K, resizeactive, 0 -20"
+        "$mod SHIFT, L, resizeactive, 20 0"
 
-      # screencap
-      "$mod SHIFT, S, exec, grimblast copy area"
-      "$mod ALT, S, exec, grimblast copy active"
-      "$mod CTRL, S, exec, grimblast copy screen"
+        # screencap
+        "$mod SHIFT, S, exec, grimblast copy area"
+        "$mod ALT, S, exec, grimblast copy active"
+        "$mod CTRL, S, exec, grimblast copy screen"
       ];
       bindm = [
         # move/resize window
@@ -621,7 +628,7 @@ window#waybar {
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$xwayland:1,floating:1,fullscreen:0,pinned:0"
       ];
-    }; 
+    };
   };
 
   programs.firefox = {
@@ -634,34 +641,34 @@ window#waybar {
         id = 0;
         name = "default";
         bookmarks = [
-        {
-          name = "searx";
-          tags = ["search" "searx"];
-          keyword = "searx";
-          url = "";
-        }
-        {
-          name = "wikipedia";
-          tags = ["wiki"];
-          keyword = "wiki";
-          url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
-        }
-        {
-          name = "Nix";
-          toolbar = true;
-          bookmarks = [
-            {
-              name = "wiki";
-              tags = [ "wiki" "nix" ];
-              url = "https://wiki.nixos.org/";
-            }
-            {
-              name = "packages";
-              tags = ["packages" "nix"];
-              url = "https://search.nixos.org/packages";
-            }
-          ];
-        }
+          {
+            name = "searx";
+            tags = ["search" "searx"];
+            keyword = "searx";
+            url = "";
+          }
+          {
+            name = "wikipedia";
+            tags = ["wiki"];
+            keyword = "wiki";
+            url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+          }
+          {
+            name = "Nix";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "wiki";
+                tags = ["wiki" "nix"];
+                url = "https://wiki.nixos.org/";
+              }
+              {
+                name = "packages";
+                tags = ["packages" "nix"];
+                url = "https://search.nixos.org/packages";
+              }
+            ];
+          }
         ];
         # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         #   ublock-origin
@@ -681,10 +688,10 @@ window#waybar {
   };
 
   programs.direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   programs.home-manager.enable = true;
 }
