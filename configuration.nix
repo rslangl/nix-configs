@@ -32,19 +32,7 @@
     nvidia.modesetting.enable = true;
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = false;
-
-  # Enable the KDE Plasma Desktop Environment.
-  #services.displayManager.sddm.enable = true;
-  #services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  #services.xserver.xkb = {
-  #  layout = "no";
-  #  variant = "";
-  #};
 
   virtualisation.libvirtd = {
     enable = true;
@@ -67,7 +55,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -84,10 +73,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-	# TODO: remove?
-  #services.gvfs.enable = true;
-  #services.tumbler.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -132,34 +117,45 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
-  ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 
 # List packages installed in system profile. To search, run:
 # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Utilities
     curl
-    wget
     git
-    zsh
+    wget
+    fd
+    wl-clipboard
+
+    # Virtualization
+    docker
+
+    # Desktop
     hyprland
     hyprlock
-    nwg-dock-hyprland
-    wezterm 
     kitty
+    wezterm 
     waybar
-    dunst
     libnotify
+    nwg-dock-hyprland
     rofi-wayland
-    wl-clipboard
-    firefox
-    gvfs
+    dunst
+    zsh
     pyprland
-    nitch
-    fd
+
+    # System utilities
+    gvfs
     dconf
+
+    # Applications
+    firefox
   ];
 
   fonts.packages = with pkgs; [
@@ -167,7 +163,6 @@
     nerd-fonts.droid-sans-mono
     nerd-fonts.dejavu-sans-mono
     nerd-fonts.jetbrains-mono
-    #font-awesome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -189,5 +184,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  system.stateVersion = "24.11";
+  #system.stateVersion = "24.11";
 }

@@ -7,7 +7,7 @@
   home.username = "user";
   home.homeDirectory = "/home/user";
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   home.keyboard = {
     layout = "no";
@@ -52,6 +52,7 @@
     shellcheck
     terraform-ls
     ansible-language-server
+    yaml-language-server
     bash-language-server
 
     stylua
@@ -65,6 +66,9 @@
     go
     unzip
     nodejs_20
+    kotlin-language-server
+    vimPlugins.nvim-jdtls
+    kotlin-language-server
 
     #(btop.override { settings = { color_theme = "gruvbox_dark_v2"; vim_keys = true; }; } )
     # # It is sometimes useful to fine-tune packages, for example, by applying

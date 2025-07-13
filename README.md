@@ -3,12 +3,20 @@
 ## Usage 
 
 **Rebuild**
-Specify flake to use when rebuilding (name of host specified after the `#`-character):
+
+Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):
 ```shell
 sudo nixos-rebuild switch --flake /etc/nixos/#neuromancer
 ```
 
+To test the configuration before switching:
+```shell
+sudo nixos-rebuild build --flake /etc/nixos/#neuromancer
+./result/bin/switch-to-configuration test
+```
+
 **Home-Manager**
+
 Currently not rebuilding home-manager with every `nixos-rebuilt`:
 ```shell
 home-manager switch
