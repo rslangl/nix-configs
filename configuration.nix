@@ -42,13 +42,14 @@
       swtpm.enable = true;
       ovmf = {
         enable = true;
-	packages = [(pkgs.OVMF.override {
+	      packages = [(pkgs.OVMF.override {
           secureBoot = true;
-	  tpmSupport = true;
-	}).fd];
+      	  tpmSupport = true;
+      	}).fd];
       };
     };
   };
+  virtualisation.docker.enable = true;
 
   console.keyMap = "no";
 
@@ -82,7 +83,7 @@
     isNormalUser = true;
     description = "user";
     useDefaultShell = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "docker" ];
   #   packages = with pkgs; [
   #     home-manager
   #   ];
