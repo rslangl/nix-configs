@@ -83,7 +83,7 @@
     isNormalUser = true;
     description = "user";
     useDefaultShell = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "docker" "kvm" ];
   #   packages = with pkgs; [
   #     home-manager
   #   ];
