@@ -51,10 +51,14 @@
     rustfmt
     shellcheck
     terraform-ls
+    terraform
+    tflint
     ansible-language-server
     yaml-language-server
     bash-language-server
 
+    gnumake
+    kcl
     stylua
     alejandra
     shfmt
