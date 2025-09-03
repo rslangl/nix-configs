@@ -68,6 +68,7 @@
     ./modules/git.nix
     ./modules/ssh.nix
     ./modules/browser.nix
+    ./modules/editor.nix
   ];
 
   home.stateVersion = "25.05";
