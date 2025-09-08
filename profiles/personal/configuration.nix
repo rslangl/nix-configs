@@ -1,12 +1,12 @@
-{ config, pkgs, lib, systemSettings, userSettings, ... }:
+{ pkgs, lib, systemSettings, userSettings, ... }:
 
 {
   imports = [
-    #../../system/hardware-configuration.nix
-    #../../system/hardware/systemd.nix # systemd config
-    #../../system/hardware/kernel.nix # Kernel config
-    #../../system/hardware/power.nix # Power management
-    #../../system/hardware/time.nix # Network time sync
+    ../../system/hardware-configuration.nix
+    #../../system/hardware/systemd.nix
+    #../../system/hardware/kernel.nix
+    #../../system/hardware/power.nix
+    #../../system/hardware/time.nix
     #../../system/app/libvirt.nix
     #../../system/app/docker.nix
   ];
@@ -45,7 +45,6 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = "user";
-    defaultUserShell = pkgs.zsh;
     extraGroups = lib.mkDefault [ "wheel" "networkmanager" "video" "audio" "dialout" ];
     uid = 1000;
   };
@@ -64,6 +63,7 @@
 
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   fonts.fontDir.enable = true;
 
@@ -76,6 +76,4 @@
   };
 
   system.stateVersion = "25.05";
-
-  home-manager.users.${userSettings.username} = import ./home.nix;
 }
