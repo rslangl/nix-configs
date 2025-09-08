@@ -64,12 +64,18 @@
       system = lib.nixosSystem {
         system = systemSettings.system;
         modules = [
-          "${profileDir}/configuration.nix"
-          inputs.home-manager.nixosModules.home-manager 
+          (import "${profileDir}/configuration.nix")
+          inputs.home-manager.nixosModules.home-manager
+            #(import "${profileDir}/home.nix")
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${userSettings.username} = import "${profileDir}/home.nix";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit userSettings;
+              };
+              users.${userSettings.username} = import "${profileDir}/home.nix";
+            };
           }
         ];
         specialArgs = {
