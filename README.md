@@ -22,6 +22,19 @@ Currently not rebuilding home-manager with every `nixos-rebuilt`:
 home-manager switch
 ```
 
+**Cleanup
+
+View generations:
+```shell
+nix profile list
+nix-env --list-generations
+```
+
+Clean old builds:
+```shell
+sudo nix-collect-garbage -d
+```
+
 ## Keybinds
 
 **Terminal**
