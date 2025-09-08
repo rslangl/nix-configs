@@ -66,7 +66,6 @@
         modules = [
           (import "${profileDir}/configuration.nix")
           inputs.home-manager.nixosModules.home-manager
-            #(import "${profileDir}/home.nix")
           {
             home-manager = {
               useGlobalPkgs = true;
@@ -79,7 +78,7 @@
           }
         ];
         specialArgs = {
-          inherit userSettings systemSettings inputs;
+          inherit userSettings systemSettings inputs self;
         };
       };
     };

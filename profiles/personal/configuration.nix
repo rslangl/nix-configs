@@ -1,10 +1,11 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
+{ pkgs, lib, systemSettings, userSettings, self, ... }:
 let
-  repo = builtins.path { path = ./.; };
+  #repo = builtins.path { path = ./.; };
 in
 {
   imports = [
-    "${repo}/system/hardware-configuration.nix"
+    #"${repo}/system/hardware-configuration.nix"
+    "${self}/system/hardware-configuration.nix"
     #../../system/hardware/systemd.nix
     #../../system/hardware/kernel.nix
     #../../system/hardware/power.nix
