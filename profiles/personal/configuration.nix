@@ -1,8 +1,10 @@
 { pkgs, lib, systemSettings, userSettings, ... }:
-
+let
+  repo = builtins.path { path = ./.; };
+in
 {
   imports = [
-    ../../system/hardware-configuration.nix
+    "${repo}/system/hardware-configuration.nix"
     #../../system/hardware/systemd.nix
     #../../system/hardware/kernel.nix
     #../../system/hardware/power.nix
