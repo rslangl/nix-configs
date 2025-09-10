@@ -1,15 +1,14 @@
 { pkgs, lib, systemSettings, userSettings, self, ... }:
 let
-  #repo = builtins.path { path = ./.; };
+  wmConfig = "${self}/system/wm/" + userSettings.wm + ".nix";
 in
 {
+
   imports = [
-    #"${repo}/system/hardware-configuration.nix"
     "${self}/system/hardware-configuration.nix"
-    #../../system/hardware/systemd.nix
-    #../../system/hardware/kernel.nix
-    #../../system/hardware/power.nix
-    #../../system/hardware/time.nix
+    "${self}/system/hardware/systemd.nix"
+    "${self}/system/hardware/kernel.nix"
+    "${wmConfig}"
     #../../system/app/libvirt.nix
     #../../system/app/docker.nix
   ];

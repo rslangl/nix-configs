@@ -75,6 +75,8 @@ sudo nix-collect-garbage -d
 
 ## TODO
 
+Patching similar to LibrePhoneix' approach, but I want initialization/bootstrapping logic based on user input that does not require manually editing the flake
+
 Secrets management with `sops`, and stateless or ephemeral root FS with `impermanence`, preserving only whitelisted state (like `/nix`, logs, config, home, etc.), specified under `environment.persistence`.
 
 Sops-nix:

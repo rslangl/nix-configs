@@ -41,6 +41,7 @@
         username = "user";
         email = "mailman@kek.net";
         dotfilesDir = "/home/user/.local/state/dotfiles";
+        wm = "hyprland";
         browser = "firefox";
         term = "wezterm";
         font = "Intel One Mono";

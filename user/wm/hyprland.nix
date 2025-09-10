@@ -18,7 +18,7 @@
     xdg-desktop-portal
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
-    nwg-dock-hyprland
+    #nwg-dock-hyprland
     wl-clipboard
   ];
 
