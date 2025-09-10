@@ -64,7 +64,7 @@
       system = lib.nixosSystem {
         system = systemSettings.system;
         modules = [
-          (import "${profileDir}/configuration.nix")
+          "${profileDir}/configuration.nix"
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
