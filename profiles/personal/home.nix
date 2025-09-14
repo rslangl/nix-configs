@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, self, ... }:
+{ inputs, config, pkgs, userSettings, self, ... }:
 let
   wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
 in
@@ -9,7 +9,7 @@ in
   programs.home-manager.enable = true;
 
   imports = [
-    "${wmConfig}"
+    #"${wmConfig}"
     "${self}/user/shell/sh.nix"
     "${self}/user/shell/cli-apps.nix"
     "${self}/user/app/editor/neovim.nix"

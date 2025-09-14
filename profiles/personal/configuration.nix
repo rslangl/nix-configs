@@ -9,8 +9,8 @@ in
     "${self}/system/hardware/systemd.nix"
     "${self}/system/hardware/kernel.nix"
     "${wmConfig}"
-    #../../system/app/libvirt.nix
-    #../../system/app/docker.nix
+    "${self}/system/app/libvirt.nix"
+    "${self}/system/app/docker.nix"
   ];
 
   nix.settings.trusted-users = [ "@wheel" ];

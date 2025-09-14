@@ -5,8 +5,8 @@
 {
 
   imports = [
-    #../../app/terminal/wezterm.nix
-    #../../app/terminal/alacritty.nix
+    ../../app/terminal/wezterm.nix
+    ../../app/terminal/alacritty.nix
   ];
 
   home.packages = with pkgs; [

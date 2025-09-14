@@ -14,20 +14,20 @@ in
       enable = true;
         package = inputs.hyprland.packages.${pkgs.system}.hyprland;
         xwayland = {
-        enable = true;
+          enable = true;
       };
     };
   };
 
   services.xserver.excludePackages = [ pkgs.xterm ];
 
-   services.xserver = {
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      enableHidpi = true;
-      theme = "chili";
-      package = pkgs.sddm;
-    };
-  };
+#    services.xserver = {
+#     displayManager.sddm = {
+#       enable = true;
+#       wayland.enable = true;
+#       enableHidpi = true;
+#       theme = "chili";
+#       package = pkgs.sddm;
+#     };
+#   };
 }

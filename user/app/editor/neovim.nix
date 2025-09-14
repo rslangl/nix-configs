@@ -36,7 +36,7 @@
     # Lua
     lua-language-server
     luajitPackages.luacheck
-    lurarocks
+    luarocks
     stylua
 
     # Nix
@@ -56,10 +56,10 @@
     docker-compose-language-service
   ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
+  # home.sessionVariables = {
+  #   EDITOR = "nvim";
+  # };
+  #
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
