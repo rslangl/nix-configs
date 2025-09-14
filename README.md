@@ -2,6 +2,13 @@
 
 ## Usage 
 
+**Updates**
+
+Update the flake:
+```shell
+nix flake update
+```
+
 **Rebuild**
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):

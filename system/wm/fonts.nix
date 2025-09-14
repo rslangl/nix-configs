@@ -1,8 +1,9 @@
-{ pkgs-stable, ... }:
+{ pkgs, ... }:
 
 {
-  fonts.packages = with pkgs-stable; [
-    nerdfonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
     powerline
   ];
 }
