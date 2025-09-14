@@ -8,19 +8,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.44.1?submodules=true";
+      url = "github:hyprwm/Hyprland/v0.50.0?submodules=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
       type = "git";
       url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
-      rev = "4d7f0b5d8b952f31f7d2e29af22ab0a55ca5c219";
+      rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
       inputs.hyprland.follows = "hyprland";
     };
     hyprlock = {
       type = "git";
       url = "https://code.hyprland.org/hyprwm/hyprlock.git";
-      rev = "73b0fc26c0e2f6f82f9d9f5b02e660a958902763";
+      rev = "04cfdc4e5bb0e53036e70cc20922ab346ce165cd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -72,7 +72,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit userSettings;
+                inherit userSettings self;
               };
               users.${userSettings.username} = import "${profileDir}/home.nix";
             };
