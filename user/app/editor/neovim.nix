@@ -2,9 +2,16 @@
 
 {
   home.packages = with pkgs; [
-    gcc
-    clang-tools
     vimPlugins.nvim-jdtls
+
+    # C/C++
+    gcc
+    gnumake
+    cmake
+    autoconf
+    automake
+    libtool
+    clang-tools
 
     # Rust
     cargo
@@ -41,6 +48,8 @@
     # Android
     java-language-server
     kotlin-language-server
+    android-tools
+    android-udev-rules
 
     # Docker
     dockerfile-language-server-nodejs
