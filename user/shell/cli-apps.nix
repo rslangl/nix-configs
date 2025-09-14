@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,6 +6,7 @@
     disfetch lolcat cowsay
     starfetch
     cava
+    cht-sh
     killall
     libnotify
     timer
@@ -19,5 +20,7 @@
     hwinfo
     pciutils
     numbat
+    nmap
+    dig
   ];
 }
