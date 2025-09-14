@@ -1,5 +1,7 @@
-{ config, pkgs, userSettings, ... }:
-
+{ config, pkgs, userSettings, self, ... }:
+let
+  wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
+in
 {
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
@@ -7,7 +9,13 @@
   programs.home-manager.enable = true;
 
   imports = [
-    # TODO: 
+    "${wmConfig}"
+    "${self}/user/shell/sh.nix"
+    "${self}/user/shell/cli-apps.nix"
+    "${self}/user/editor/nvim.nix"
+    "${self}/user/git/git.nix"
+    "${self}/user/pwmgr/keepass.nix"
+    "${self}/user/browser/firefox.nix"
   ];
 
   home.stateVersion = "25.05";
