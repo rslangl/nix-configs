@@ -2,39 +2,87 @@
   description = "Flake config for based heretics";
 
   inputs = {
-    # renovate: datasource=github-tags depName=nixos/nixpgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
-      # renovate: datasource=github-tags depName=nix-community/home-manager
       url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.50.0?submodules=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-plugins = {
+      type = "git";
+      url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
+      rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprlock = {
+      type = "git";
+      url = "https://code.hyprland.org/hyprwm/hyprlock.git";
+      rev = "04cfdc4e5bb0e53036e70cc20922ab346ce165cd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
+      systemSettings = {
+        system = "x86_64-linux";
+        hostname = "mechromancer";
+        profile = "personal";
+        timezone = "Europe/Oslo";
+        locale = "en_US.UTF-8";
+        bootMode = "uefi";
+        bootMountPath = "/boot";
+      };
+
+      userSettings = {
+        username = "user";
+        email = "mailman@kek.net";
+        dotfilesDir = "/home/user/.local/state/dotfiles";
+        wm = "hyprland";
+        browser = "firefox";
+        term = "wezterm";
+        font = "Intel One Mono";
+        fontPkg = pkgs.intel-one-mono;
+        editor = "neovim";
+      };
+
+      profileDir = ./profiles/${systemSettings.profile};
+
+      system = systemSettings.system;
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      lib = inputs.nixpkgs.lib;
     in
   {
-    
-    # The 'default' config is intended for workstations with DE's
-    nixosConfigurations.mechromancer = nixpkgs.lib.nixosSystem {
-      #extraSpecialArgs = {inherit inputs system;};
-      specialArgs = {inherit inputs system;};
-      modules = [
-        ./configuration.nix
-          # ensures home-manager is enabled for all users on the system
-          home-manager.nixosModules.home-manager {
-              # use global packages configured via system-level nixpkgs rather
-              # than a private pkgs instance
-              home-manager.useGlobalPkgs = true;
-              # install packages to /etc/profiles/ rather than $HOME/.nix-profile
-              home-manager.useUserPackages = true;
-              #home-manager.users.user = import $HOME/.config/home-manager/home.nix;
-            }
-      ];
+    nixosConfigurations = {
+      system = lib.nixosSystem {
+        system = systemSettings.system;
+        modules = [
+          "${profileDir}/configuration.nix"
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit userSettings self;
+              };
+              users.${userSettings.username} = import "${profileDir}/home.nix";
+            };
+          }
+        ];
+        specialArgs = {
+          inherit userSettings systemSettings inputs self;
+        };
+      };
     };
-
   };
 }
 
