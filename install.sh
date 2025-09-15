@@ -1,25 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 NIX_CONFIGS_REPO_URL=https://github.com/rslangl/nix-configs
 SYSTEM_NIX_DIR=/etc/nixos
-HOME_NIX_DIR=/home/user/.config/home-manager
-DOTFILES_DIR=/home/user/.local/state/dotfiles
-
-# # Fetch latest version of nix configs
-# nix-shell -p git --command \
-#   "git clone https://github.com/rslangl/nix-configs $SCRIPT_DIR"
-#
-# # Change permissions for particular files
-# sudo chown 0:0 $SCRIPT_DIR/configuration.nix
-# sudo chown 0:0 $SCRIPT_DIR/flake.nix
-#
-# # Move system-specific files to /etc/nixos/
-# sudo mv $SCRIPT_DIR/flake.nix $GLOBAL_NIX_DIR/
-# sudo mv $SCRIPT_DIR/configuration.nix $GLOBAL_NIX_DIR/
-#
-# # Move user-specific files to $HOME/.config/home-manager/expr
-# mv $SCRIPT_DIR/home.nix $USER_NIX_DIR/
-#
+USERNAME="${USERNAME:-$(whoami)}"
+HOME_NIX_DIR="${HOME_NIX_DIR:-$HOME/.config/home-manager}"
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.local/state/dotfiles}"
 
 # Clone repo
 echo "Cloning nix dotfiles to $DOTFILES_DIR..."
@@ -46,3 +33,11 @@ else
   sudo ln -s "$DOTFILES_DIR" "$SYSTEM_NIX_DIR"
 fi
 echo "Done!\n\n"
+
+echo "Done! Nix configs installed"
+echo "Update:\t`nix flake update`"
+echo "Rebuild:\t`sudo nixos-rebuild build --flake /etc/nixos#desktop`"
+echo "Test build:\t`./result/bin/switch-to-configuration test`"
+echo "Switch build:\t`sudo nixos-rebuild switch --flake /etc/nixos#desktop`"
+echo "Cleanup:\t`sudo nix-collect-garbage -d`"
+
