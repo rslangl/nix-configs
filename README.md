@@ -1,15 +1,22 @@
 # nix-configs
 
-## Usage 
+## Usage
 
-**Updates**
+### Install
+
+Install using the script:
+```shell
+curl -sSf https://raw.githubusercontent.com/rslangl/nix-configs/master/install.sh | bash
+```
+
+### Update
 
 Update the flake:
 ```shell
 nix flake update
 ```
 
-**Rebuild**
+### Build and switch
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):
 ```shell
@@ -22,14 +29,8 @@ sudo nixos-rebuild build --flake /etc/nixos/#neuromancer
 ./result/bin/switch-to-configuration test
 ```
 
-**Home-Manager**
 
-Currently not rebuilding home-manager with every `nixos-rebuilt`:
-```shell
-home-manager switch
-```
-
-**Cleanup
+### Cleanup
 
 View generations:
 ```shell
@@ -80,73 +81,8 @@ sudo nix-collect-garbage -d
 * `SUPER+SHIFT+l`: Resize window right
 * <u>TODO</u>: audio, volume increase/decrease/mute
 
-## TODO
+## References
 
-Patching similar to LibrePhoneix' approach, but I want initialization/bootstrapping logic based on user input that does not require manually editing the flake
-
-Secrets management with `sops`, and stateless or ephemeral root FS with `impermanence`, preserving only whitelisted state (like `/nix`, logs, config, home, etc.), specified under `environment.persistence`.
-
-Sops-nix:
-* Declarative and fully integrated with NixOS and flakes
-* Uses encrypted files (Age or GPG) directly in your config repo
-* Secrets are decrypted at activation time, not stored in plain text or the Nix store
-* Bonus: works with both system and Home Manager modules
-* Great for multi-host, multi-person setups 
-
-agenix:
-* Uses SSH or Age encryption for secrets; similar declarative approach
-* Includes a NixOS module for seamless integration
-
-```nix
-# flake.nix
-{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    home-manager.url = "github:nix-community/home-manager";
-    sops-nix.url = "github:mic92/sops-nix";
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = { self, nixpkgs, home-manager, sops-nix, impermanence, ... }:
-    let system = "x86_64-linux"; uname = "your-username";
-    in {
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = [
-            ./hosts/desktop.nix
-            sops-nix.nixosModules.sops
-            impermanence + "/nixos.nix"
-            home-manager.nixosModules.home-manager
-            { home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${uname} = {
-                imports = [ ./home/base.nix ./home/desktop.nix ];
-                extraSpecialArgs = { inherit uname; };
-              };
-            }
-          ];
-        };
-      };
-    };
-}
-# hosts/desktop.nix
-{
-  imports = [
-    ./hardware/desktop.nix
-    ./hardware/*
-  ];
-
-  environment.persistence."/nix/persist" = {
-    directories = [ "/etc/nixos" "/var/log" "/var/lib" ];
-    files = [ "/etc/machine-id" ];
-  };
-
-  # Other system settings...
-
-  system.stateVersion = "24.05";
-}
-```
+* [NixOS configuration reference](https://nixos.org/manual/nixos/stable/#ch-configuration)
+* [NixOS packages](https://search.nixos.org/packages)
+* [NixOS wiki](https://wiki.nixos.org/wiki/Main_Page)
