@@ -1,0 +1,36 @@
+name: Build and Test NixOS VM
+
+on: [push, pull_request]
+
+jobs:
+  build-vm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v22
+
+      - name: Install QEMU
+        run: sudo apt-get update && sudo apt-get install -y qemu-system-x86
+
+      - name: Build VM Image
+        run: |
+          nix build --impure \
+            --expr 'with import <nixpkgs> {}; (import (builtins.fetchGit { url = "https://github.com/nix-community/nixos-generators"; rev = "master"; })) {
+              system = "x86_64-linux";
+              format = "qcow2";
+              configuration = ./test/configuration.nix;
+            }'
+
+      # Optional: Boot VM in headless mode to confirm it starts
+      - name: Boot VM (Headless)
+        run: |
+          qemu-system-x86_64 \
+            -m 2048 -smp 2 -nographic -enable-kvm \
+            -drive file=./result/nixos.qcow2,format=qcow2,if=virtio \
+            -net user,hostfwd=tcp::2222-:22 -net nic &
+          sleep 60
+          nc -zv 127.0.0.1 2222
