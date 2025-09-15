@@ -4,9 +4,14 @@
 
 ### Install
 
+Two environment variables are expected during install (if defaults are not desired):
+* `USERNAME`: User account, to be used to resolve the correct `HOME` path
+* `DOTFILES_DIR`: Path to which this source code will be cloned
+
 Install using the script:
 ```shell
-curl -sSf https://raw.githubusercontent.com/rslangl/nix-configs/master/install.sh | bash
+USERNAME="user" DOTFILES_DIR="$HOME/.local/state/dotfiles" \
+  curl -sSf https://raw.githubusercontent.com/rslangl/nix-configs/master/install.sh | bash
 ```
 
 ### Update
