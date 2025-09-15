@@ -1,23 +1,43 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-GLOBAL_NIX_DIR=/etc/nixos
-USER_NIX_DIR=$HOME/.config/home-manager
-SCRIPT_DIR=$HOME/dev/sw/nix-configs
+set -euo pipefail
 
-# Fetch latest version of nix configs
-nix-shell -p git --command \
-  "git clone https://github.com/rslangl/nix-configs $SCRIPT_DIR"
+NIX_CONFIGS_REPO_URL=https://github.com/rslangl/nix-configs
+SYSTEM_NIX_DIR=/etc/nixos
+USERNAME="${USERNAME:-$(whoami)}"
+HOME_NIX_DIR="${HOME_NIX_DIR:-$HOME/.config/home-manager}"
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.local/state/dotfiles}"
 
-# Change permissions for particular files
-sudo chown 0:0 $SCRIPT_DIR/configuration.nix
-sudo chown 0:0 $SCRIPT_DIR/flake.nix
+# Clone repo
+echo "Cloning nix dotfiles to $DOTFILES_DIR..."
+if [ -d "$DOTFILES_DIR" ]; then
+  echo "Nix dotfiles already present, skipping"
+else
+  git clone "$NIX_CONFIGS_REPO_URL" "$DOTFILES_DIR"
+fi
+echo "Done!\n\n"
 
-# Move system-specific files to /etc/nixos/
-sudo mv $SCRIPT_DIR/flake.nix $GLOBAL_NIX_DIR/
-sudo mv $SCRIPT_DIR/configuration.nix $GLOBAL_NIX_DIR/
+# Symlink configs
+echo "Setting up nix configs..."
+if [ -d "$SYSTEM_NIX_DIR" ] && [ ! -L "$SYSTEM_NIX_DIR" ]; then
+  echo "Backing up existing /etc/nixos to /etc/nixos.backup"
+  sudo mv "$SYSTEM_NIX_DIR" /etc/nixos.backup
+fi
+echo "Done!\n\n"
 
-# Move user-specific files to $HOME/.config/home-manager/expr
-mv $SCRIPT_DIR/home.nix $USER_NIX_DIR/
+# Symlink nix configs dir to /etc/nixos
+if [ -L "$SYSTEM_NIX_DIR" ]; then
+  echo "/etc/nixos is already a symlink, skipping"
+else
+  echo "Symlinking $SYSTEM_NIX_DIR to /etc/nixos"
+  sudo ln -s "$DOTFILES_DIR" "$SYSTEM_NIX_DIR"
+fi
+echo "Done!\n\n"
 
-# Rebuild system
-sudo nixos-rebuild switch --flake $GLOBAL_NIX_DIR#mechromancer
+echo "Done! Nix configs installed"
+echo "Update:\t`nix flake update`"
+echo "Rebuild:\t`sudo nixos-rebuild build --flake /etc/nixos#desktop`"
+echo "Test build:\t`./result/bin/switch-to-configuration test`"
+echo "Switch build:\t`sudo nixos-rebuild switch --flake /etc/nixos#desktop`"
+echo "Cleanup:\t`sudo nix-collect-garbage -d`"
+
