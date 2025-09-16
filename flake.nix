@@ -125,7 +125,7 @@
             users.${userSettings.username} = import "${profileDir}/home.nix";
           };
         }
-        ./test/test-vm.nix
+        ./test/configuration.nix
       ];
       specialArgs = {
         inherit userSettings systemSettings inputs self;

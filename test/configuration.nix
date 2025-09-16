@@ -1,5 +1,5 @@
 # ./vm-test/configuration.nix
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -12,6 +12,15 @@
   boot.extraModprobeConfig = lib.mkForce "";  # NOTE: may use either mkOverride or mkForce to override from real configuration.nix
   boot.loader.generic-extlinux-compatible.enable = lib.mkForce false;
   boot.isContainer = true;
+
+  fileSystems."/" = {
+    device = lib.mkForce "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+
+  home-manager.users.user.fonts.fontconfig.enable = lib.mkForce false;
+
+  #home-manager.users.user.xdg.configFile."fontconfig/conf.d/10-hm-fonts.conf".text = lib.mkForce "<!-- dummy config -->";
 
   # users.users.vmuser = {
   #   isNormalUser = true;
