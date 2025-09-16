@@ -1,0 +1,51 @@
+name: Nix Formatting and Linting
+
+on:
+  push:
+    paths:
+      - '**.nix'
+  pull_request:
+    paths:
+      - '**.nix'
+
+jobs:
+  lint:
+    name: Check Nix files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Install tools
+        run: |
+          nix-env -iA nixpkgs.alejandra \
+                       nixpkgs.statix \
+                       nixpkgs.deadnix \
+                       nixpkgs.nixpkgs-fmt
+
+      - name: Run alejandra (format check)
+        run: |
+          echo "Running alejandra..."
+          alejandra --check .
+
+      - name: Run statix (linting)
+        run: |
+          echo "Running statix..."
+          statix check .
+
+      - name: Run deadnix (unused code check)
+        run: |
+          echo "Running deadnix..."
+          deadnix .
+
+      - name: Run nixpkgs-fmt (format check)
+        run: |
+          echo "Running nixpkgs-fmt..."
+          nixpkgs-fmt --check .
