@@ -7,16 +7,21 @@
     ../profiles/personal/configuration.nix
   ];
 
+  boot.kernelModules = lib.mkForce [ ];
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.grub.enable = lib.mkForce false;
+  boot.initrd.enable = lib.mkForce true;
   boot.initrd.supportedFilesystems = [ "ext4" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = lib.mkForce [ ];
+  boot.initrd.includeDefaultModules = lib.mkForce true;
   boot.extraModprobeConfig = lib.mkForce "";  # NOTE: may use either mkOverride or mkForce to override from real configuration.nix
   boot.loader.generic-extlinux-compatible.enable = lib.mkForce false;
   boot.isContainer = true;
 
+  environment.etc."modprobe.d/nixos.conf".source = "/etc/modprobe.d/nixos.conf";
+
   fileSystems."/" = {
-    device = lib.mkForce "tmpfs"; #"/dev/disk/by-label/nixos";
+    device = lib.mkForce "/dev/disk/by-label/nixos";
     fsType = lib.mkForce "tmpfs";
     options = lib.mkForce [ "defaults" ];
   };
