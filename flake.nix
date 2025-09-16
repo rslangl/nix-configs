@@ -111,7 +111,7 @@
     # Expose test VM as a buildable QEMU image
     packages.${systemSettings.system}.test-vm-image = inputs.nixos-generators.nixosGenerate {
       system = systemSettings.system;
-      format = "qcow2";
+      format = "qcow";
       modules = [
         "${profileDir}/configuration.nix"
         inputs.home-manager.nixosModules.home-manager
