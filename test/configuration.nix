@@ -9,13 +9,16 @@
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.grub.enable = lib.mkForce false;
+  boot.initrd.supportedFilesystems = [ "ext4" ];
+  boot.initrd.kernelModules = [ ];
   boot.extraModprobeConfig = lib.mkForce "";  # NOTE: may use either mkOverride or mkForce to override from real configuration.nix
   boot.loader.generic-extlinux-compatible.enable = lib.mkForce false;
   boot.isContainer = true;
 
   fileSystems."/" = {
-    device = lib.mkForce "/dev/disk/by-label/nixos";
-    fsType = "ext4";
+    device = lib.mkForce "tmpfs"; #"/dev/disk/by-label/nixos";
+    fsType = lib.mkForce "tmpfs";
+    options = lib.mkForce [ "defaults" ];
   };
 
   home-manager.users.user.fonts.fontconfig.enable = lib.mkForce false;
@@ -41,6 +44,6 @@
 
   networking.networkmanager.enable = true;
 
-  services.qemuGuest.enable = true;
+  #services.qemuGuest.enable = true;
 }
 
