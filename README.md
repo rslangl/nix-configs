@@ -21,6 +21,18 @@ Update the flake:
 nix flake update
 ```
 
+### Test environment
+
+Build a VM without running it:
+```shell
+nix build .#nixosConfigurations.test-vm.config.system.build.vm
+```
+
+Run the VM:
+```shell
+nix run .#nixosConfigurations.test-vm.config.system.build.vm
+```
+
 ### Build and switch
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):

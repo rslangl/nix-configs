@@ -23,7 +23,7 @@
       rev = "04cfdc4e5bb0e53036e70cc20922ab346ce165cd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-generators.url = "github:nix-community/nixos-generators";
+    #nixos-generators.url = "github:nix-community/nixos-generators";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -109,28 +109,28 @@
     };
 
     # Expose test VM as a buildable QEMU image
-    packages.${systemSettings.system}.test-vm-image = inputs.nixos-generators.nixosGenerate {
-      system = systemSettings.system;
-      format = "qcow";
-      modules = [
-        "${profileDir}/configuration.nix"
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              inherit userSettings self;
-            };
-            users.${userSettings.username} = import "${profileDir}/home.nix";
-          };
-        }
-        ./test/configuration.nix
-      ];
-      specialArgs = {
-        inherit userSettings systemSettings inputs self;
-      };
-    };
+  #   packages.${systemSettings.system}.test-vm-image = inputs.nixos-generators.nixosGenerate {
+  #     system = systemSettings.system;
+  #     format = "qcow";
+  #     modules = [
+  #       "${profileDir}/configuration.nix"
+  #       inputs.home-manager.nixosModules.home-manager
+  #       {
+  #         home-manager = {
+  #           useGlobalPkgs = true;
+  #           useUserPackages = true;
+  #           extraSpecialArgs = {
+  #             inherit userSettings self;
+  #           };
+  #           users.${userSettings.username} = import "${profileDir}/home.nix";
+  #         };
+  #       }
+  #       ./test/configuration.nix
+  #     ];
+  #     specialArgs = {
+  #       inherit userSettings systemSettings inputs self;
+  #     };
+  #   };
   };
 }
 
