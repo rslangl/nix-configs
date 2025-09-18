@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
-IMAGE="./result/nixos.qcow2"
+local _image="$1"
 
 if [ ! -f "$IMAGE" ]; then
-  echo "❌ Image not found at $IMAGE. Run nix build first."
+  echo "❌ Image not found at $_image."
   exit 1
 fi
 
@@ -14,6 +15,6 @@ qemu-system-x86_64 \
   -smp 4 \
   -device virtio-vga \
   -nic user,model=virtio \
-  -drive file="$IMAGE",format=qcow2,if=virtio \
+  -drive file="$_image",format=qcow2,if=virtio \
   -display default,show-cursor=on
 
