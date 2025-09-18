@@ -78,59 +78,14 @@
               users.${userSettings.username} = import "${profileDir}/home.nix";
             };
           }
+          ./test/test-overlay.nix
         ];
         specialArgs = {
           inherit userSettings systemSettings inputs self;
         };
       };
 
-      # Test VM configuration using real configs with overrides
-      test-vm = lib.nixosSystem {
-        system = systemSettings.system;
-        modules = [
-          "${profileDir}/configuration.nix"
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit userSettings self;
-              };
-              users.${userSettings.username} = import "${profileDir}/home.nix";
-            };
-          }
-          ./test/configuration.nix 
-        ];
-        specialArgs = {
-          inherit userSettings systemSettings inputs self;
-        };
-      };
     };
-
-    # Expose test VM as a buildable QEMU image
-  #   packages.${systemSettings.system}.test-vm-image = inputs.nixos-generators.nixosGenerate {
-  #     system = systemSettings.system;
-  #     format = "qcow";
-  #     modules = [
-  #       "${profileDir}/configuration.nix"
-  #       inputs.home-manager.nixosModules.home-manager
-  #       {
-  #         home-manager = {
-  #           useGlobalPkgs = true;
-  #           useUserPackages = true;
-  #           extraSpecialArgs = {
-  #             inherit userSettings self;
-  #           };
-  #           users.${userSettings.username} = import "${profileDir}/home.nix";
-  #         };
-  #       }
-  #       ./test/configuration.nix
-  #     ];
-  #     specialArgs = {
-  #       inherit userSettings systemSettings inputs self;
-  #     };
-  #   };
   };
 }
 
