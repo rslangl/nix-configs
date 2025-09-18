@@ -24,7 +24,6 @@ in
     # Core
     zsh
     git
-    firefox
     btop
     tree
     ripgrep
