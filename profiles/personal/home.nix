@@ -9,13 +9,19 @@ in
   programs.home-manager.enable = true;
 
   imports = [
-    #"${wmConfig}"
-    "${self}/user/shell/sh.nix"
-    "${self}/user/shell/cli-apps.nix"
-    "${self}/user/app/editor/neovim.nix"
-    "${self}/user/app/git/git.nix"
-    "${self}/user/app/pwmgr/keepass.nix"
-    "${self}/user/app/browser/firefox.nix"
+    import (./. + "../../user/wm" + ("/" + userSettings.wm) + ".nix")
+    ../../user/shell/sh.nix
+    ../../user/shell/cli-apps.nix
+    ../../user/app/editor/neovim.nix
+    ../../user/app/git/git.nix
+    ../../user/app/pwmgr/keepass.nix
+    ../../user/app/browser/firefox.nix
+  #   "${self}/user/shell/sh.nix"
+  #   "${self}/user/shell/cli-apps.nix"
+  #   "${self}/user/app/editor/neovim.nix"
+  #   "${self}/user/app/git/git.nix"
+  #   "${self}/user/app/pwmgr/keepass.nix"
+  #   "${self}/user/app/browser/firefox.nix"
   ];
 
   home.stateVersion = "25.05";

@@ -73,7 +73,7 @@
               extraSpecialArgs = {
                 inherit userSettings self;
               };
-              users.${userSettings.username} = (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+              users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
             };
           }
           ./test/test-overlay.nix

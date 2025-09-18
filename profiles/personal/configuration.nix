@@ -5,12 +5,21 @@ in
 {
 
   imports = [
-    "${self}/system/hardware-configuration.nix"
-    "${self}/system/hardware/systemd.nix"
-    "${self}/system/hardware/kernel.nix"
-    "${wmConfig}"
-    "${self}/system/app/libvirt.nix"
-    "${self}/system/app/docker.nix"
+    ../../system/hardware-configuration.nix
+    ../../system/hardware/systemd.nix
+    ../../system/hardware/kernel.nix
+    ../../system/security/firewall.nix
+    ../../system/security/automount.nix
+    ../../system/security/sshd.nix
+    (./. + "../../../system/wm" + ("/" + userSettings.wm) + ".nix")
+    ../../system/app/libvirt.nix
+    ../../system/app/docker.nix
+  #   "${self}/system/hardware-configuration.nix"
+  #   "${self}/system/hardware/systemd.nix"
+  #   "${self}/system/hardware/kernel.nix"
+  #   "${wmConfig}"
+  #   "${self}/system/app/libvirt.nix"
+  #   "${self}/system/app/docker.nix"
   ];
 
   nix.settings.trusted-users = [ "@wheel" ];
