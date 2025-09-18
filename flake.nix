@@ -50,8 +50,6 @@
         editor = "neovim";
       };
 
-      profileDir = ./profiles/${systemSettings.profile};
-
       system = systemSettings.system;
 
       pkgs = import nixpkgs {
@@ -66,7 +64,7 @@
       system = lib.nixosSystem {
         system = systemSettings.system;
         modules = [
-          "${profileDir}/configuration.nix"
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -75,7 +73,7 @@
               extraSpecialArgs = {
                 inherit userSettings self;
               };
-              users.${userSettings.username} = import "${profileDir}/home.nix";
+              users.${userSettings.username} = (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
             };
           }
           ./test/test-overlay.nix
