@@ -23,14 +23,23 @@ nix flake update
 
 ### Test environment
 
-Build a VM without running it:
-```shell
-nix build .#nixosConfigurations.test-vm.config.system.build.vm
+To test we can use nixos-generators to build a test image:
+```
+nix profile install github:nix-community/nixos-generators
+nixos-generate -f qcow --flake .#personal
 ```
 
-Run the VM:
-```shell
-nix run .#nixosConfigurations.test-vm.config.system.build.vm
+Run VM and run tests:
+```
+./test/run-vm.sh
+./test/assert.sh
+# TODO: access GUI
+```
+
+Cleanup:
+```
+# TODO: stop and delete VM
+nix profile remove github:nix-community/nixos-generators
 ```
 
 ### Build and switch
