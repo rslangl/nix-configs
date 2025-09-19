@@ -1,7 +1,7 @@
-{ inputs, config, pkgs, userSettings, self, ... }:
-let
-  wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
-in
+{ inputs, config, pkgs, userSettings, ... }:
+# let
+#   wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
+# in
 {
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
@@ -9,7 +9,7 @@ in
   programs.home-manager.enable = true;
 
   imports = [
-    import (./. + "../../user/wm" + ("/" + userSettings.wm) + ".nix")
+    (./. + "../../../user/wm" + ("/" + userSettings.wm) + ".nix")
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
     ../../user/app/editor/neovim.nix

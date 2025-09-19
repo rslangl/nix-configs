@@ -10,7 +10,7 @@ in
     ../../system/hardware/kernel.nix
     ../../system/security/firewall.nix
     ../../system/security/automount.nix
-    ../../system/security/sshd.nix
+    #../../system/security/sshd.nix
     (./. + "../../../system/wm" + ("/" + userSettings.wm) + ".nix")
     ../../system/app/libvirt.nix
     ../../system/app/docker.nix
