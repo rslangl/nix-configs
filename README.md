@@ -26,12 +26,12 @@ nix flake update
 To test we can use nixos-generators to build a test image:
 ```
 nix profile install github:nix-community/nixos-generators
-nixos-generate -f qcow --flake .#personal
+nixos-generate -f qcow --flake .#personal -o ./build
 ```
 
 Run VM and run tests:
 ```
-./test/run-vm.sh
+./test/run-vm.sh ./build/nixos.qcow2
 ./test/assert.sh
 # TODO: access GUI
 ```
@@ -46,12 +46,12 @@ nix profile remove github:nix-community/nixos-generators
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):
 ```shell
-sudo nixos-rebuild switch --flake /etc/nixos/#neuromancer
+sudo nixos-rebuild switch --flake /etc/nixos/#system
 ```
 
 To test the configuration before switching:
 ```shell
-sudo nixos-rebuild build --flake /etc/nixos/#neuromancer
+sudo nixos-rebuild build --flake /etc/nixos/#system
 ./result/bin/switch-to-configuration test
 ```
 
@@ -112,3 +112,7 @@ sudo nix-collect-garbage -d
 * [NixOS configuration reference](https://nixos.org/manual/nixos/stable/#ch-configuration)
 * [NixOS packages](https://search.nixos.org/packages)
 * [NixOS wiki](https://wiki.nixos.org/wiki/Main_Page)
+
+## TODO
+
+* Current qcow2 image being built returns the error: "Read-only file system"

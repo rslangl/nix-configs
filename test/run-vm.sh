@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-local _image="$1"
+IMAGE="$1"
 
 if [ ! -f "$IMAGE" ]; then
-  echo "❌ Image not found at $_image."
+  echo "❌ Image not found at $IMAGE."
   exit 1
 fi
 
@@ -15,6 +15,6 @@ qemu-system-x86_64 \
   -smp 4 \
   -device virtio-vga \
   -nic user,model=virtio \
-  -drive file="$_image",format=qcow2,if=virtio \
+  -drive file="$IMAGE",format=qcow2,if=virtio \
   -display default,show-cursor=on
 
