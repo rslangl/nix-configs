@@ -3,20 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      #url = "github:nix-community/home-manager/release-25.05";
-      url =  "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #  #url = "github:hyprwm/Hyprland";
+    #  url =  "github:nixos/nixpkgs/nixos-unstable";
+    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #};
     hyprland-plugins = {
       type = "git";
       url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
       #rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
-      inputs.hyprland.follows = "hyprland";
+      #inputs.hyprland.follows = "nixpkgs-unstable";
     };
     hyprlock = {
       type = "git";

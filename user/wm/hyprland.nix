@@ -16,11 +16,11 @@
     hyprlock
     hyprpaper
     qt6.qtwayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    #nwg-dock-hyprland
+    # xdg-utils
+    # xdg-desktop-portal
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-hyprland
+    # #nwg-dock-hyprland
     wl-clipboard
     rofi-wayland  # TODO: consider moving to a launcher module
   ];
@@ -37,7 +37,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
