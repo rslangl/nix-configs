@@ -4,23 +4,24 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      #url = "github:nix-community/home-manager/release-25.05";
+      url =  "github:nixos/nixpkgs/nixos-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.50.0?submodules=true";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
       type = "git";
       url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
-      rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
+      #rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
       inputs.hyprland.follows = "hyprland";
     };
     hyprlock = {
       type = "git";
       url = "https://code.hyprland.org/hyprwm/hyprlock.git";
-      rev = "04cfdc4e5bb0e53036e70cc20922ab346ce165cd";
+      #rev = "04cfdc4e5bb0e53036e70cc20922ab346ce165cd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #nixos-generators.url = "github:nix-community/nixos-generators";
@@ -55,6 +56,9 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+      #   overlays = [
+      #     hyprland.overlays.default
+      #   ];
       };
 
       lib = inputs.nixpkgs.lib;
@@ -71,7 +75,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit userSettings self;
+                inherit userSettings systemSettings inputs;
               };
               users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
             };
@@ -79,7 +83,7 @@
           ./test/test-overlay.nix
         ];
         specialArgs = {
-          inherit userSettings systemSettings inputs self;
+          inherit userSettings systemSettings inputs;
         };
       };
 
