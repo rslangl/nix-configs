@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, self, userSettings, systemSettings, ... }:
+{ inputs, config, lib, pkgs, userSettings, systemSettings, ... }:
 # let
 #   pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 # in
@@ -161,7 +161,6 @@
     };
   };
 
-  
   programs.waybar = {
     enable = true;
     settings = {
