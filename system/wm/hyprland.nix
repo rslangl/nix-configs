@@ -19,7 +19,7 @@
     };
   };
 
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  #services.xserver.excludePackages = [ pkgs.xterm ];
 
 #    services.xserver = {
 #     displayManager.sddm = {

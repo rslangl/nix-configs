@@ -9,15 +9,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # hyprland = {
-    #  #url = "github:hyprwm/Hyprland";
-    #  url =  "github:nixos/nixpkgs/nixos-unstable";
+    #   url = "github:hyprwm/Hyprland";
+    # #  url =  "github:nixos/nixpkgs/nixos-unstable";
     #  inputs.nixpkgs.follows = "nixpkgs-unstable";
-    #};
+    # };
     hyprland-plugins = {
-      type = "git";
-      url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
-      #rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
-      #inputs.hyprland.follows = "nixpkgs-unstable";
+      #type = "git";
+      #url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
+      url = "github:hyprwm/hyprland-plugins";
+      ##rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
+      inputs.hyprland.follows = "hyprland";
     };
     hyprlock = {
       type = "git";
@@ -81,7 +82,7 @@
               users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
             };
           }
-          ./test/test-overlay.nix
+            #./test/test-overlay.nix
         ];
         specialArgs = {
           inherit userSettings systemSettings inputs;
