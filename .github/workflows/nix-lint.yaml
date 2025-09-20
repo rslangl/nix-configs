@@ -25,10 +25,10 @@ jobs:
 
       - name: Install tools
         run: |
-          nix-env -iA nixpkgs.alejandra \
-                       nixpkgs.statix \
-                       nixpkgs.deadnix \
-                       nixpkgs.nixpkgs-fmt
+          nix profile install nixpkgs#alejandra \
+                       nixpkgs#statix \
+                       nixpkgs#deadnix \
+                       nixpkgs#nixpkgs-fmt
 
       - name: Run alejandra (format check)
         run: |
