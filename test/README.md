@@ -62,7 +62,4 @@ qemu-system-x86_64 \
   -display none \
   -vnc :1
 ```
-```
-```
-```
 

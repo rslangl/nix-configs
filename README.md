@@ -137,6 +137,3 @@ sudo nix-collect-garbage -d
 * [NixOS packages](https://search.nixos.org/packages)
 * [NixOS wiki](https://wiki.nixos.org/wiki/Main_Page)
 
-## TODO
-
-* Current qcow2 image being built returns the error: "Read-only file system"
