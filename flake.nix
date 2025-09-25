@@ -18,7 +18,7 @@
       #url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
       url = "github:hyprwm/hyprland-plugins";
       ##rev = "b8d6d369618078b2dbb043480ca65fe3521f273b";
-      inputs.hyprland.follows = "hyprland";
+      inputs.hyprland.follows = "nixpkgs";
     };
     hyprlock = {
       type = "git";
