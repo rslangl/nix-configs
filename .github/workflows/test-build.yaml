@@ -21,4 +21,3 @@ jobs:
       - name: Build nix config
         run: |
           nix build .#nixosConfiguration.system.config.system.build.toplevel
-
