@@ -11,8 +11,22 @@ on:
       - '**.nix'
 
 jobs:
-  lint:
-    name: Check linting and formatting
+  shellcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install shellcheck
+        run: |
+          sudo apt-get install -y shellcheck
+
+      - name: Run shellcheck
+        run: |
+          find . -name "*.sh" -exec shellcheck {} +
+
+  yaml-lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,16 +36,34 @@ jobs:
       - name: Install linters
         run: |
           sudo apt-get update
-          sudo apt-get install -y shellcheck yamllint
-          npm install -g markdownlint-cli
+          sudo apt-get install -y yamllint
 
-      - name: Lint shell scripts
+      - name: Run YAML lint
         run: |
-          find . -name "*.sh" -exec shellcheck {} +
+          yamllint **.yaml
+
+  markdown-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install linters
+        run: |
+          sudo apt-get update
+          npm install -g markdownlint-cli
 
       - name: Lint markdown files
         run: |
-          markdownlint -c .markdownlint.yaml "**/*.md"
+          markdownlint"**/*.md"
+
+  nix-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
 
       - name: Set up Nix
         uses: cachix/install-nix-action@v31
