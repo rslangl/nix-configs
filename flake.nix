@@ -8,10 +8,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-     hyprland = {
-       url = "github:hyprwm/Hyprland";
-    # #  url =  "github:nixos/nixpkgs/nixos-unstable";
-    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      # #  url =  "github:nixos/nixpkgs/nixos-unstable";
+      #  inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprland-plugins = {
       #type = "git";
