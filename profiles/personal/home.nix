@@ -1,7 +1,7 @@
-{ inputs, config, pkgs, userSettings, self, ... }:
-let
-  wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
-in
+{ inputs, config, pkgs, userSettings, ... }:
+# let
+#   wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
+# in
 {
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
@@ -9,13 +9,19 @@ in
   programs.home-manager.enable = true;
 
   imports = [
-    #"${wmConfig}"
-    "${self}/user/shell/sh.nix"
-    "${self}/user/shell/cli-apps.nix"
-    "${self}/user/app/editor/neovim.nix"
-    "${self}/user/app/git/git.nix"
-    "${self}/user/app/pwmgr/keepass.nix"
-    "${self}/user/app/browser/firefox.nix"
+    (./. + "../../../user/wm" + ("/" + userSettings.wm) + ".nix")
+    ../../user/shell/sh.nix
+    ../../user/shell/cli-apps.nix
+    ../../user/app/editor/neovim.nix
+    ../../user/app/git/git.nix
+    ../../user/app/pwmgr/keepass.nix
+    ../../user/app/browser/firefox.nix
+  #   "${self}/user/shell/sh.nix"
+  #   "${self}/user/shell/cli-apps.nix"
+  #   "${self}/user/app/editor/neovim.nix"
+  #   "${self}/user/app/git/git.nix"
+  #   "${self}/user/app/pwmgr/keepass.nix"
+  #   "${self}/user/app/browser/firefox.nix"
   ];
 
   home.stateVersion = "25.05";
@@ -24,7 +30,6 @@ in
     # Core
     zsh
     git
-    firefox
     btop
     tree
     ripgrep

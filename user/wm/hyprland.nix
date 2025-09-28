@@ -1,12 +1,12 @@
-{ inputs, config, lib, pkgs, self, userSettings, systemSettings, ... }:
+{ inputs, config, lib, pkgs, userSettings, systemSettings, ... }:
 # let
 #   pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 # in
 {
 
   imports = [
-    ../../app/terminal/wezterm.nix
-    ../../app/terminal/alacritty.nix
+    ../app/terminal/wezterm.nix
+    #../app/terminal/alacritty.nix
   ];
 
   home.packages = with pkgs; [
@@ -16,17 +16,29 @@
     hyprlock
     hyprpaper
     qt6.qtwayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    #nwg-dock-hyprland
+    # xdg-utils
+    # xdg-desktop-portal
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-hyprland
+    # #nwg-dock-hyprland
     wl-clipboard
     rofi-wayland  # TODO: consider moving to a launcher module
   ];
 
   gtk = {
     enable = true;
+
+    # NOTE: taken from the wiki
+    #
+    # theme = {
+    #   package = pkgs.flat-remix-gtk;
+    #   name = "Flat-Remix-GTK-Grey-Darkest";
+    # };
+    #
+    # iconTheme = {
+    #   package = pkgs.adwaita-icon-theme;
+    #   name = "Adwaita";
+    # };
 
     cursorTheme = {
       package = pkgs.adwaita-icon-theme; # pkgs.quintom-cursor-theme
@@ -37,7 +49,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
@@ -161,7 +173,6 @@
     };
   };
 
-  
   programs.waybar = {
     enable = true;
     settings = {

@@ -25,12 +25,12 @@ nix flake update
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):
 ```shell
-sudo nixos-rebuild switch --flake /etc/nixos/#neuromancer
+sudo nixos-rebuild switch --flake /etc/nixos/#system
 ```
 
 To test the configuration before switching:
 ```shell
-sudo nixos-rebuild build --flake /etc/nixos/#neuromancer
+sudo nixos-rebuild build --flake /etc/nixos/#system
 ./result/bin/switch-to-configuration test
 ```
 
@@ -91,3 +91,4 @@ sudo nix-collect-garbage -d
 * [NixOS configuration reference](https://nixos.org/manual/nixos/stable/#ch-configuration)
 * [NixOS packages](https://search.nixos.org/packages)
 * [NixOS wiki](https://wiki.nixos.org/wiki/Main_Page)
+

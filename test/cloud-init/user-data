@@ -1,0 +1,15 @@
+#cloud-config
+users:
+  - name: devuser
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users, admin
+    lock_passwd: false
+    passwd: $6$rounds=4096$pepper$RK2j1M0DWRHvQFJ/y8gRgMSLrZCWQ7tpWn5RQwJWUVsbnpgpFgYZKpAd46N5LzlsEiTn5JgaU1mTIOzyEmQ3R/
+
+packages:
+  - curl
+  - git
+
+runcmd:
+  - [ bash, -c, "echo 'Cloud-init completed successfully'" ]
