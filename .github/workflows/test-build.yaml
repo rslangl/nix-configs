@@ -1,0 +1,23 @@
+name: Build and test nix config
+
+on: [push, pull_request]
+
+jobs:
+  build-vm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v22
+
+      - name: Build nix config
+        run: |
+          nixos-rebuild build --flake .#system
+
+      - name: Test nix config
+        run: |
+          ./result/bin/switch-to-configuration test
+
