@@ -62,7 +62,7 @@ if [ -L "$SYSTEM_NIX_DIR/profiles" || -L "$SYSTEM_NIX_DIR/system" || -L "$SYSTEM
   read -rp "${INFO} /etc/nixos is already a symlink, ovewrite? [N/y]" systemdirOverwrite
   case "$systemdirOverwrite" in
     [yY][eE][sS]|[Y])
-      rm -rf "${SYSTEM_NIX_DIR}/*"
+      rm -rf "${SYSTEM_NIX_DIR:?}/*"
       ;;
     *)
       echo "${INFO} Aborting"
