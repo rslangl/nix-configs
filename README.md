@@ -21,51 +21,6 @@ Update the flake:
 nix flake update
 ```
 
-### Test environment
-
-TODO:
-* Ensure KVM kernel module is loaded:
-```
-lsmod | grep kvm
-# Should return:
-kvm_intel             245760  0
-kvm                   655360  1 kvm_intel
-```
-* Load modules:
-```
-sudo modprobe kvm
-sudo modprobe kvm_intel   # for Intel CPUs
-sudo modprobe kvm_amd     # for AMD CPUs
-```
-* Check if /dev/kvm exists. If it does not, KVM device is not available:
-```
-ls -l /dev/kvm
-```
-* Check CPU virtualization support (output 0 means it is not supported or enabled in BIOS):
-```
-egrep -c '(vmx|svm)' /proc/cpuinfo
-```
-
-
-To test we can use nixos-generators to build a test image:
-```
-nix profile install github:nix-community/nixos-generators
-nixos-generate -f qcow --flake .#personal -o ./build
-```
-
-Run VM and run tests:
-```
-./test/run-vm.sh ./build/nixos.qcow2
-./test/assert.sh
-# TODO: access GUI
-```
-
-Cleanup:
-```
-# TODO: stop and delete VM
-nix profile remove github:nix-community/nixos-generators
-```
-
 ### Build and switch
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):

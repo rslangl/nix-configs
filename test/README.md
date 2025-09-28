@@ -2,6 +2,39 @@
 
 VMs for testing the NixOS configs.
 
+## Prerequisites
+
+Ensure your system supports running virtual workloads:
+
+* Ensure KVM kernel module is loaded:
+
+```
+lsmod | grep kvm
+# Should return:
+kvm_intel             245760  0
+kvm                   655360  1 kvm_intel
+```
+
+* Load modules:
+
+```
+sudo modprobe kvm
+sudo modprobe kvm_intel   # for Intel CPUs
+sudo modprobe kvm_amd     # for AMD CPUs
+```
+
+* Check if /dev/kvm exists. If it does not, KVM device is not available:
+
+```
+ls -l /dev/kvm
+```
+
+* Check CPU virtualization support (output 0 means it is not supported or enabled in BIOS):
+
+```
+egrep -c '(vmx|svm)' /proc/cpuinfo
+```
+
 ## Usage
 
 Run VM:
