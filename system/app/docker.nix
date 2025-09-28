@@ -1,6 +1,10 @@
-{ config, pkgs, lib, userSettings, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  userSettings,
+  ...
+}: {
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
@@ -8,7 +12,7 @@
     autoPrune.enable = true;
   };
 
-  users.users.${userSettings.username}.extraGroups = lib.mkAfter [ "docker" ];
+  users.users.${userSettings.username}.extraGroups = lib.mkAfter ["docker"];
 
   environment.systemPackages = with pkgs; [
     docker

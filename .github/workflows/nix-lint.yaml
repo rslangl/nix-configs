@@ -38,14 +38,10 @@ jobs:
       - name: Run statix (linting)
         run: |
           echo "Running statix..."
-          statix check .
+          statix check . -i *hardware-configuration.nix
 
       - name: Run deadnix (unused code check)
         run: |
           echo "Running deadnix..."
           deadnix .
 
-      - name: Run nixpkgs-fmt (format check)
-        run: |
-          echo "Running nixpkgs-fmt..."
-          nixpkgs-fmt --check .

@@ -1,9 +1,11 @@
-{ pkgs, lib, systemSettings, userSettings, self, ... }:
-let
-  wmConfig = "${self}/system/wm/" + userSettings.wm + ".nix";
-in
 {
-
+  pkgs,
+  lib,
+  systemSettings,
+  userSettings,
+  self,
+  ...
+}: {
   imports = [
     ../../system/hardware-configuration.nix
     ../../system/hardware/systemd.nix
@@ -14,21 +16,17 @@ in
     (./. + "../../../system/wm" + ("/" + userSettings.wm) + ".nix")
     ../../system/app/libvirt.nix
     ../../system/app/docker.nix
-  #   "${self}/system/hardware-configuration.nix"
-  #   "${self}/system/hardware/systemd.nix"
-  #   "${self}/system/hardware/kernel.nix"
-  #   "${wmConfig}"
-  #   "${self}/system/app/libvirt.nix"
-  #   "${self}/system/app/docker.nix"
   ];
 
-  nix.settings.trusted-users = [ "@wheel" ];
+  nix.settings.trusted-users = ["@wheel"];
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.efi.efiSysMountPoint = systemSettings.bootMountPath;
-    loader.grub.enable = false;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = systemSettings.bootMountPath;
+      grub.enable = false;
+    };
     extraModprobeConfig = "options kvm_intel nested=1";
   };
 
@@ -56,7 +54,7 @@ in
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = "user";
-    extraGroups = lib.mkDefault [ "wheel" "networkmanager" "video" "audio" "dialout" ];
+    extraGroups = lib.mkDefault ["wheel" "networkmanager" "video" "audio" "dialout"];
     uid = 1000;
   };
 
@@ -72,7 +70,7 @@ in
     dconf
   ];
 
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 

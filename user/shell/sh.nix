@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     zsh
     oh-my-zsh
@@ -23,11 +25,11 @@
     };
     dirHashes = {
       dev = "$HOME/dev";
-      dev_co = "$HOME/dev/co"; 
+      dev_co = "$HOME/dev/co";
       dev_re = "$HOME/dev/re";
       dev_sw = "$HOME/dev/sw";
       mails = "$HOME/mail";
-      vm = "$HOME/vm"; 
+      vm = "$HOME/vm";
       docs = "$HOME/docs";
       docs_art = "$HOME/docs/art";
       docs_tech = "$HOME/docs/tech";

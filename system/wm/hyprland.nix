@@ -1,8 +1,9 @@
-{ inputs, pkgs, lib, ... }:
-# let
-#   #pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-# in
 {
+  inputs,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./wayland.nix
     ./pipewire.nix
@@ -13,21 +14,21 @@
     hyprland = {
       enable = true;
       withUWSM = true;
-      package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
-      portalPackage = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      package = inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprland;
+      portalPackage = inputs.nixpkgs.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
   };
 
   #services.xserver.excludePackages = [ pkgs.xterm ];
 
-#    services.xserver = {
-#     displayManager.sddm = {
-#       enable = true;
-#       wayland.enable = true;
-#       enableHidpi = true;
-#       theme = "chili";
-#       package = pkgs.sddm;
-#     };
-#   };
+  #    services.xserver = {
+  #     displayManager.sddm = {
+  #       enable = true;
+  #       wayland.enable = true;
+  #       enableHidpi = true;
+  #       theme = "chili";
+  #       package = pkgs.sddm;
+  #     };
+  #   };
 }

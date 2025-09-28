@@ -1,9 +1,9 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Command Line
-    disfetch lolcat cowsay
+    disfetch
+    lolcat
+    cowsay
     starfetch
     cava
     cht-sh
@@ -12,7 +12,11 @@
     timer
     brightnessctl
     gnugrep
-    bat eza fd bottom ripgrep
+    bat
+    eza
+    fd
+    bottom
+    ripgrep
     rsync
     unzip
     w3m

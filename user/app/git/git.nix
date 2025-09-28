@@ -1,7 +1,9 @@
-{ userSettings, pkgs, ... }:
-
 {
-  home.packages = with pkgs; [ git ];
+  userSettings,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [git];
 
   programs.git = {
     enable = true;

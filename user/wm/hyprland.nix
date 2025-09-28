@@ -1,12 +1,14 @@
-{ inputs, config, lib, pkgs, userSettings, systemSettings, ... }:
-# let
-#   pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-# in
 {
-
+  inputs,
+  config,
+  lib,
+  pkgs,
+  userSettings,
+  systemSettings,
+  ...
+}: {
   imports = [
     ../app/terminal/wezterm.nix
-    #../app/terminal/alacritty.nix
   ];
 
   home.packages = with pkgs; [
@@ -22,7 +24,7 @@
     # xdg-desktop-portal-hyprland
     # #nwg-dock-hyprland
     wl-clipboard
-    rofi-wayland  # TODO: consider moving to a launcher module
+    rofi # TODO: consider moving to a launcher module
   ];
 
   gtk = {
@@ -49,7 +51,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
+    package = inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
@@ -237,8 +239,7 @@
         "pulseaudio" = {
           format = "Audio: {volume:2}% ";
           format-muted = "MUTE";
-          format-icons = {
-          };
+          format-icons = {};
           scroll-step = "5";
           on-click = "pamixer -t";
           on-click-right = "pavucontrol";
