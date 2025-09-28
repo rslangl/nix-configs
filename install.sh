@@ -58,7 +58,7 @@ else
 fi
 
 # Symlink nix configs dir to /etc/nixos
-if [ -L "$SYSTEM_NIX_DIR/profiles" || -L "$SYSTEM_NIX_DIR/system" || -L "$SYSTEM_NIX_DIR/user" ]; then
+if [ -L "$SYSTEM_NIX_DIR/profiles" ] || [ -L "$SYSTEM_NIX_DIR/system" ] || [ -L "$SYSTEM_NIX_DIR/user" ]; then
   read -rp "${INFO} /etc/nixos is already a symlink, ovewrite? [N/y]" systemdirOverwrite
   case "$systemdirOverwrite" in
     [yY][eE][sS]|[Y])
