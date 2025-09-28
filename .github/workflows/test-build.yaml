@@ -13,11 +13,11 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v22
 
+      - name: Check nix flake
+        run: |
+          nix flake check
+
       - name: Build nix config
         run: |
-          nixos-rebuild build --flake .#system
-
-      - name: Test nix config
-        run: |
-          ./result/bin/switch-to-configuration test
+          nix build .#nixosConfiguration.system.config.system.build.toplevel
 
