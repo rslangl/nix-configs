@@ -1,5 +1,5 @@
 _: {
-  services.journald.  services = {
+  services = {
     journald = {
       extraConfig = "SystemMaxUse=50M\nSystemMaxFiles=5";
       rateLimitBurst = 500;
