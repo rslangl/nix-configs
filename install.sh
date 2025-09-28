@@ -14,7 +14,7 @@ SYSTEM_NIX_DIR=/etc/nixos
 USERNAME="${USERNAME:-$(whoami)}"
 HOME_NIX_DIR="${HOME_NIX_DIR:-$HOME/.config/home-manager}"
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.local/state/dotfiles}"
-HARDWARE_CONFIG_FILE="${DOTFILES_DIR}/hardware-configuration.nix"
+HARDWARE_CONFIG_FILE="${DOTFILES_DIR}/system/hardware-configuration.nix"
 
 # Clone repo
 echo "${INFO} Cloning nix dotfiles to $DOTFILES_DIR..."
@@ -58,17 +58,20 @@ else
 fi
 
 # Symlink nix configs dir to /etc/nixos
-if [ -L "$SYSTEM_NIX_DIR" ]; then
+if [ -L "$SYSTEM_NIX_DIR/profiles" ] || [ -L "$SYSTEM_NIX_DIR/system" ] || [ -L "$SYSTEM_NIX_DIR/user" ]; then
   read -rp "${INFO} /etc/nixos is already a symlink, ovewrite? [N/y]" systemdirOverwrite
   case "$systemdirOverwrite" in
     [yY][eE][sS]|[Y])
-      rm -rf "${SYSTEM_NIX_DIR}"
-      ln -s "${DOTFILES_DIR}" "${SYSTEM_NIX_DIR}"
+      rm -rf "${SYSTEM_NIX_DIR:?}/*"
       ;;
     *)
       echo "${INFO} Aborting"
       exit 1
       ;;
   esac
+else
+  ln -s "${DOTFILES_DIR}/profiles" "${SYSTEM_NIX_DIR}/profiles"
+  ln -s "${DOTFILES_DIR}/system" "${SYSTEM_NIX_DIR}/system"
+  ln -s "${DOTFILES_DIR}/user" "${SYSTEM_NIX_DIR}/user"
 fi
 
