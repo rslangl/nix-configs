@@ -1,4 +1,10 @@
-{ inputs, config, pkgs, userSettings, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  userSettings,
+  ...
+}:
 # let
 #   wmConfig = "${self}/user/wm/" + userSettings.wm + ".nix";
 # in
@@ -16,12 +22,12 @@
     ../../user/app/git/git.nix
     ../../user/app/pwmgr/keepass.nix
     ../../user/app/browser/firefox.nix
-  #   "${self}/user/shell/sh.nix"
-  #   "${self}/user/shell/cli-apps.nix"
-  #   "${self}/user/app/editor/neovim.nix"
-  #   "${self}/user/app/git/git.nix"
-  #   "${self}/user/app/pwmgr/keepass.nix"
-  #   "${self}/user/app/browser/firefox.nix"
+    #   "${self}/user/shell/sh.nix"
+    #   "${self}/user/shell/cli-apps.nix"
+    #   "${self}/user/app/editor/neovim.nix"
+    #   "${self}/user/app/git/git.nix"
+    #   "${self}/user/app/pwmgr/keepass.nix"
+    #   "${self}/user/app/browser/firefox.nix"
   ];
 
   home.stateVersion = "25.05";
@@ -37,22 +43,22 @@
     fzf
 
     # Office
-    zathura           # PDF viewer
-    xournalpp         # handwriting notetaking app
+    zathura # PDF viewer
+    xournalpp # handwriting notetaking app
     libreoffice
 
     # Media
-    mpv               # video playback
-    sxiv              # image viewer
+    mpv # video playback
+    sxiv # image viewer
     telegram-desktop
     signal-desktop
-    vesktop           # custom Discord desktop app
-    grimblast         # screen capture
+    vesktop # custom Discord desktop app
+    grimblast # screen capture
     yt-dlp
 
     # Utils
-    keychain          # SSH key manager
-    zoxide            # smarter `cd` app
+    keychain # SSH key manager
+    zoxide # smarter `cd` app
   ];
 
   xdg.enable = true;

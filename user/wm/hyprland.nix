@@ -1,9 +1,16 @@
-{ inputs, config, lib, pkgs, userSettings, systemSettings, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  userSettings,
+  systemSettings,
+  ...
+}:
 # let
 #   pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 # in
 {
-
   imports = [
     ../app/terminal/wezterm.nix
     #../app/terminal/alacritty.nix
@@ -22,7 +29,7 @@
     # xdg-desktop-portal-hyprland
     # #nwg-dock-hyprland
     wl-clipboard
-    rofi-wayland  # TODO: consider moving to a launcher module
+    rofi-wayland # TODO: consider moving to a launcher module
   ];
 
   gtk = {

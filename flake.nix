@@ -29,43 +29,46 @@
     #nixos-generators.url = "github:nix-community/nixos-generators";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
-    let
-      systemSettings = {
-        system = "x86_64-linux";
-        hostname = "mechromancer";
-        profile = "personal";
-        timezone = "Europe/Oslo";
-        locale = "en_US.UTF-8";
-        bootMode = "uefi";
-        bootMountPath = "/boot";
-      };
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  }: let
+    systemSettings = {
+      system = "x86_64-linux";
+      hostname = "mechromancer";
+      profile = "personal";
+      timezone = "Europe/Oslo";
+      locale = "en_US.UTF-8";
+      bootMode = "uefi";
+      bootMountPath = "/boot";
+    };
 
-      userSettings = {
-        username = "user";
-        email = "mailman@kek.net";
-        dotfilesDir = "/home/user/.local/state/dotfiles";
-        wm = "hyprland";
-        browser = "firefox";
-        term = "wezterm";
-        font = "Intel One Mono";
-        fontPkg = pkgs.intel-one-mono;
-        editor = "neovim";
-      };
+    userSettings = {
+      username = "user";
+      email = "mailman@kek.net";
+      dotfilesDir = "/home/user/.local/state/dotfiles";
+      wm = "hyprland";
+      browser = "firefox";
+      term = "wezterm";
+      font = "Intel One Mono";
+      fontPkg = pkgs.intel-one-mono;
+      editor = "neovim";
+    };
 
-      system = systemSettings.system;
+    system = systemSettings.system;
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
       #   overlays = [
       #     hyprland.overlays.default
       #   ];
-      };
+    };
 
-      lib = inputs.nixpkgs.lib;
-    in
-  {
+    lib = inputs.nixpkgs.lib;
+  in {
     nixosConfigurations = {
       system = lib.nixosSystem {
         system = systemSettings.system;
@@ -82,14 +85,12 @@
               users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
             };
           }
-            #./test/test-overlay.nix
+          #./test/test-overlay.nix
         ];
         specialArgs = {
           inherit userSettings systemSettings inputs;
         };
       };
-
     };
   };
 }
-

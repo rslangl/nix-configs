@@ -1,6 +1,8 @@
-{ userSettings, authorizedKeys ? [], ... }:
-
 {
+  userSettings,
+  authorizedKeys ? [],
+  ...
+}: {
   services.openssh = {
     enable = true;
     openFirewall = true;
