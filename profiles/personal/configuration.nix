@@ -5,9 +5,7 @@
   userSettings,
   self,
   ...
-}: let
-  wmConfig = "${self}/system/wm/" + userSettings.wm + ".nix";
-in {
+}: {
   imports = [
     ../../system/hardware-configuration.nix
     ../../system/hardware/systemd.nix

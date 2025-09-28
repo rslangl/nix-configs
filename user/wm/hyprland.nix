@@ -6,14 +6,9 @@
   userSettings,
   systemSettings,
   ...
-}:
-# let
-#   pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-# in
-{
+}: {
   imports = [
     ../app/terminal/wezterm.nix
-    #../app/terminal/alacritty.nix
   ];
 
   home.packages = with pkgs; [
