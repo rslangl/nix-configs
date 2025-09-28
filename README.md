@@ -5,10 +5,12 @@
 ### Install
 
 Two environment variables are expected during install (if defaults are not desired):
+
 * `USERNAME`: User account, to be used to resolve the correct `HOME` path
 * `DOTFILES_DIR`: Path to which this source code will be cloned
 
 Install using the script:
+
 ```shell
 USERNAME="user" DOTFILES_DIR="$HOME/.local/state/dotfiles" \
   curl -sSf https://raw.githubusercontent.com/rslangl/nix-configs/master/install.sh | bash
@@ -17,6 +19,7 @@ USERNAME="user" DOTFILES_DIR="$HOME/.local/state/dotfiles" \
 ### Update
 
 Update the flake:
+
 ```shell
 nix flake update
 ```
@@ -24,33 +27,37 @@ nix flake update
 ### Build and switch
 
 Specify flake to use when rebuilding (name of host specified after the `#`-character, or simply use `$(hostname)`):
+
 ```shell
 sudo nixos-rebuild switch --flake /etc/nixos/#system
 ```
 
 To test the configuration before switching:
+
 ```shell
 sudo nixos-rebuild build --flake /etc/nixos/#system
 ./result/bin/switch-to-configuration test
 ```
 
-
 ### Cleanup
 
 View generations:
+
 ```shell
 nix profile list
 nix-env --list-generations
 ```
 
 Clean old builds:
+
 ```shell
 sudo nix-collect-garbage -d
 ```
 
 ## Keybinds
 
-**Terminal**
+### Terminal
+
 * `CTRL+SHIFT+O`: Split horizontal
 * `CTRL+SHIFT+E`: Split vertical
 * `CTRL+SHIFT+T`: New tab
@@ -62,7 +69,8 @@ sudo nix-collect-garbage -d
 * `ALT+k`: Focus pane above
 * `ALT+l`: Focus right pane
 
-**Hyprland**
+### Hyprland
+
 * `SUPER+d`: Launch rofi
 * `SUPER+q`: Kill window
 * `SUPER+TAB`: Cycle window
@@ -84,11 +92,10 @@ sudo nix-collect-garbage -d
 * `SUPER+SHIFT+j`: Resize window down
 * `SUPER+SHIFT+k`: Resize window up
 * `SUPER+SHIFT+l`: Resize window right
-* <u>TODO</u>: audio, volume increase/decrease/mute
+* TODO: audio, volume increase/decrease/mute
 
 ## References
 
 * [NixOS configuration reference](https://nixos.org/manual/nixos/stable/#ch-configuration)
 * [NixOS packages](https://search.nixos.org/packages)
 * [NixOS wiki](https://wiki.nixos.org/wiki/Main_Page)
-
