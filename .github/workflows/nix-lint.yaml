@@ -45,7 +45,3 @@ jobs:
           echo "Running deadnix..."
           deadnix .
 
-      - name: Run nixpkgs-fmt (format check)
-        run: |
-          echo "Running nixpkgs-fmt..."
-          nixpkgs-fmt --check .

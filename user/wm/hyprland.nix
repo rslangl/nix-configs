@@ -244,8 +244,7 @@
         "pulseaudio" = {
           format = "Audio: {volume:2}% ";
           format-muted = "MUTE";
-          format-icons = {
-          };
+          format-icons = {};
           scroll-step = "5";
           on-click = "pamixer -t";
           on-click-right = "pavucontrol";
