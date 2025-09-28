@@ -50,6 +50,14 @@ nix-shell -p vnctiger
 vncviewer localhost:5901
 ```
 
+If this is the first time running the script, it is recommended to make a snapshot of the image that you
+can roll back to, if necessary. Either run e.g. `./run-vm.sh -s nixos -k` to make a backup snapshot of
+the selected system, or manually run:
+
+```console
+qemu-img create -f qcow2 -b drives/nixos.qcow2 -F qcow2 snapshots/nixos.qcow2
+```
+
 ## Building
 
 ### Option 1: Conventional image
