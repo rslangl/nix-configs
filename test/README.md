@@ -8,7 +8,7 @@ Ensure your system supports running virtual workloads:
 
 * Ensure KVM kernel module is loaded:
 
-```
+```console
 lsmod | grep kvm
 # Should return:
 kvm_intel             245760  0
@@ -17,7 +17,7 @@ kvm                   655360  1 kvm_intel
 
 * Load modules:
 
-```
+```console
 sudo modprobe kvm
 sudo modprobe kvm_intel   # for Intel CPUs
 sudo modprobe kvm_amd     # for AMD CPUs
@@ -25,24 +25,26 @@ sudo modprobe kvm_amd     # for AMD CPUs
 
 * Check if /dev/kvm exists. If it does not, KVM device is not available:
 
-```
+```console
 ls -l /dev/kvm
 ```
 
 * Check CPU virtualization support (output 0 means it is not supported or enabled in BIOS):
 
-```
+```console
 egrep -c '(vmx|svm)' /proc/cpuinfo
 ```
 
 ## Usage
 
 Run VM:
+
 ```shell
 ./run-vm.sh (debian|debiancloud|nixos)
 ```
 
 This will launch the VM with a VNC connection available at `:5901`. Access it using e.g.:
+
 ```shell
 nix-shell -p vnctiger
 vncviewer localhost:5901
@@ -53,6 +55,7 @@ vncviewer localhost:5901
 ### Option 1: Conventional image
 
 We can build a bootable image by providing a regular ISO that creates a virtual drive file:
+
 ```shell
 qemu-img create -f qcow2 debian_drive.qcow2 20G
 qemu-system-x86_64 \
@@ -74,12 +77,15 @@ Then access the VM over VNC and follow the install steps. Once installed, remove
 
 ### Option 2: Cloud image
 
-Cloud images rely on a seed image to do system initialization. These are in turn relying on certain user input, such as `user-data` and `meta-data`:
+Cloud images rely on a seed image to do system initialization. These are in turn relying on certain user input,
+such as `user-data` and `meta-data`:
+
 ```shell
 genisoimage -output seed.iso -volid cidata -joliet -rock cloud-init/user-data cloud-init/meta-data
 ```
 
 With the generated image, run the VM with VNC:
+
 ```shell
 qemu-system-x86_64 \
   -drive file=debian_nocloud.qcow2,format=qcow2 \
@@ -95,4 +101,3 @@ qemu-system-x86_64 \
   -display none \
   -vnc :1
 ```
-

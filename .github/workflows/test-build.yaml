@@ -1,3 +1,4 @@
+---
 name: Build and test nix config
 
 on: [push, pull_request]
