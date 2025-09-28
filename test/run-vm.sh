@@ -131,7 +131,7 @@ if [[ -z "${images[$SYSTEM]+_}" ]]; then
     usage
 fi
 
-if [[ -n "${SNAPSHOT:-}" ]]; then
+if [[ "${SNAPSHOT:-false}" == true ]]; then
   if [[ ! -f "${DRIVES_DIR}/${SYSTEM}.qcow2" ]]; then
     echo "${ERROR} No drive file to run snapshot from: $SYSTEM, in directory $DRIVES_DIR"
     usage
