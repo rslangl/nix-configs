@@ -3,7 +3,7 @@ name: Build and test nix config
 on: [push, pull_request]
 
 jobs:
-  build-vm:
+  build-nix:
     runs-on: ubuntu-latest
 
     steps:

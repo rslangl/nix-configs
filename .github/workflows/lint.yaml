@@ -3,19 +3,35 @@ name: Nix Formatting and Linting
 on:
   push:
     paths:
+      - '**.sh'
       - '**.nix'
   pull_request:
     paths:
+      - '**.sh'
       - '**.nix'
 
 jobs:
   lint:
-    name: Check Nix files
+    name: Check linting and formatting
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+
+      - name: Install linters
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck yamllint
+          npm install -g markdownlint-cli
+
+      - name: Lint shell scripts
+        run: |
+          find . -name "*.sh" -exec shellcheck {} +
+
+      - name: Lint markdown files
+        run: |
+          markdownlint "**/*.md"
 
       - name: Set up Nix
         uses: cachix/install-nix-action@v31
