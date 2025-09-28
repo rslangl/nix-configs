@@ -15,7 +15,7 @@ jobs:
 
       - name: Check nix flake
         run: |
-          nix flake check
+          nix flake check --no-update-lock-file
 
       - name: Build nix config
         run: |
