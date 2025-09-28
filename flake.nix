@@ -57,7 +57,7 @@
       editor = "neovim";
     };
 
-    system = systemSettings.system;
+    inherit (systemSettings) system;
 
     pkgs = import nixpkgs {
       inherit system;
@@ -67,11 +67,11 @@
       #   ];
     };
 
-    lib = inputs.nixpkgs.lib;
+    inherit (inputs.nixpkgs) lib;
   in {
     nixosConfigurations = {
       system = lib.nixosSystem {
-        system = systemSettings.system;
+        inherit (systemSettings) system;
         modules = [
           (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
           inputs.home-manager.nixosModules.home-manager
