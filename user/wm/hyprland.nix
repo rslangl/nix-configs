@@ -24,7 +24,7 @@
     # xdg-desktop-portal-hyprland
     # #nwg-dock-hyprland
     wl-clipboard
-    rofi-wayland # TODO: consider moving to a launcher module
+    rofi # TODO: consider moving to a launcher module
   ];
 
   gtk = {
@@ -51,7 +51,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
+    package = inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {

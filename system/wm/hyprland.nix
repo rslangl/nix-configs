@@ -14,8 +14,8 @@
     hyprland = {
       enable = true;
       withUWSM = true;
-      package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
-      portalPackage = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      package = inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprland;
+      portalPackage = inputs.nixpkgs.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
   };
