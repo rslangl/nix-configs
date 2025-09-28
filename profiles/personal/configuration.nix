@@ -27,7 +27,7 @@ in {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = systemSettings.bootMountPath;
-      grub.enable = true;
+      grub.enable = false;
     };
     extraModprobeConfig = "options kvm_intel nested=1";
   };
