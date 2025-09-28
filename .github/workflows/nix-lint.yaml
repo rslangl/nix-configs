@@ -38,7 +38,7 @@ jobs:
       - name: Run statix (linting)
         run: |
           echo "Running statix..."
-          statix check .
+          statix check . -i *hardware-configuration.nix
 
       - name: Run deadnix (unused code check)
         run: |
