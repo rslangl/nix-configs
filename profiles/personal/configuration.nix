@@ -18,21 +18,17 @@ in {
     (./. + "../../../system/wm" + ("/" + userSettings.wm) + ".nix")
     ../../system/app/libvirt.nix
     ../../system/app/docker.nix
-    #   "${self}/system/hardware-configuration.nix"
-    #   "${self}/system/hardware/systemd.nix"
-    #   "${self}/system/hardware/kernel.nix"
-    #   "${wmConfig}"
-    #   "${self}/system/app/libvirt.nix"
-    #   "${self}/system/app/docker.nix"
   ];
 
   nix.settings.trusted-users = ["@wheel"];
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.efi.efiSysMountPoint = systemSettings.bootMountPath;
-    loader.grub.enable = false;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = systemSettings.bootMountPath;
+      grub.enable = true;
+    };
     extraModprobeConfig = "options kvm_intel nested=1";
   };
 
