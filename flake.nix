@@ -11,15 +11,15 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
-  #   hyprland-plugins = {
-  #     url = "github:hyprwm/hyprland-plugins";
-  #     inputs.hyprland.follows = "nixpkgs";
-  #   };
-  #   hyprlock = {
-  #     type = "git";
-  #     url = "https://code.hyprland.org/hyprwm/hyprlock.git";
-  #     inputs.nixpkgs.follows = "nixpkgs";
-  #   };
+    #   hyprland-plugins = {
+    #     url = "github:hyprwm/hyprland-plugins";
+    #     inputs.hyprland.follows = "nixpkgs";
+    #   };
+    #   hyprlock = {
+    #     type = "git";
+    #     url = "https://code.hyprland.org/hyprwm/hyprlock.git";
+    #     inputs.nixpkgs.follows = "nixpkgs";
+    #   };
   };
 
   outputs = inputs @ {
