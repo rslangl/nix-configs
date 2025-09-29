@@ -18,6 +18,7 @@
     ../../system/app/docker.nix
   ];
 
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["@wheel"];
 
   boot = {
@@ -54,7 +55,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = "user";
-    extraGroups = lib.mkDefault ["wheel" "networkmanager" "video" "audio" "dialout"];
+    extraGroups = lib.mkDefault ["wheel" "networkmanager" "video" "audio" "dialout" "input"];
     uid = 1000;
   };
 
@@ -68,6 +69,7 @@
     home-manager
     wpa_supplicant
     dconf
+    tuigreet
   ];
 
   environment.shells = with pkgs; [zsh];
@@ -82,6 +84,16 @@
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
     ];
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "tuigreet --cmd Hyprland";
+        user = "user";
+      };
+    };
   };
 
   system.stateVersion = "25.05";
