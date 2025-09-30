@@ -5,7 +5,7 @@
     enable = true;
     execWheelOnly = false;
     wheelNeedsPassword = false;
-    security.sudo.extraRules = [
+    extraRules = [
       {
         groups = ["wheel"];
         host = "ALL";
@@ -13,7 +13,7 @@
         commands = [
           {
             command = "ALL";
-            options = [ "NOPASSWWD" ];
+            options = [ "NOPASSWD" ];
           }
         ];
       }
