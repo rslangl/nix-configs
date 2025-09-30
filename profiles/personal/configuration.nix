@@ -60,32 +60,35 @@
     uid = 1000;
   };
 
-  environment.variables = rec {
-    XDG_CACHE_HOME = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_STATE_HOME = "$HOME/.local/state";
+  environment = {
+    variables = rec {
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_STATE_HOME = "$HOME/.local/state";
 
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = [
-      "${XDG_BIN_HOME}"
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      PATH = [
+        "${XDG_BIN_HOME}"
+      ];
+    };
+
+    systemPackages = with pkgs; [
+      vim
+      wget
+      curl
+      git
+      zsh
+      cryptsetup
+        home-manager
+      wpa_supplicant
+      dconf
+      tuigreet
     ];
+  
+    shells = with pkgs; [zsh];
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    curl
-    git
-    zsh
-    cryptsetup
-    home-manager
-    wpa_supplicant
-    dconf
-    tuigreet
-  ];
-
-  environment.shells = with pkgs; [zsh];
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
