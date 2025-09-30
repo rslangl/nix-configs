@@ -18,10 +18,10 @@
       ls = "ls --color=auto";
       la = "ls -la";
       ll = "ls -l";
-      wget = "wget --no-cookie -v --hsts-file=$XDG_CACHE_HOME/wget-hsts";
-      sbt = "sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_DATA_HOME/sbt";
-      mvn = "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml";
-      nvidia-settings = "nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings";
+      wget = "wget --no-cookie -v --hsts-file=${xdg.config.cacheHome}/wget-hsts";
+      sbt = "sbt -ivy ${xdg.config.dataHome}/ivy2 -sbt-dir ${xdg.config.dataHome}/sbt";
+      mvn = "mvn -gs ${xdg.config.configHome}/maven/settings.xml";
+      nvidia-settings = "nvidia-settings --config=${xdg.config.configHome}/nvidia/settings";
     };
     dirHashes = {
       dev = "$HOME/dev";
@@ -40,15 +40,15 @@
       share_seed = "$HOME/share/seed"; # torrents
       share_lect = "$HOME/share/lect"; # lectures
     };
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     # extra commands to be added to .zshenv
     envExtra = "export RUSTUP_HOME=${config.xdg.dataHome}/rustup\n
        export CARGO_HOME=${config.xdg.dataHome}/cargo";
     # extra commands to be added to .zprofile
-    profileExtra = "[[ \"$(tty)\" == \"/dev/tty1\" ]] && exec Hyprland";
+    #profileExtra = "[[ \"$(tty)\" == \"/dev/tty1\" ]] && exec Hyprland";
     # extra commands to be added to .zshrc
     initContent = "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
-       eval \"$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval ssh ~/.ssh/github --quiet)\"";
+       eval \"$(keychain --absolute --dir ${config.xdg.runtimeDir}/keychain --eval ssh ${config.home.homeDirectory}/.ssh/github --quiet)\"";
     oh-my-zsh = {
       enable = true;
       plugins = [
