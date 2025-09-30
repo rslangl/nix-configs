@@ -7,26 +7,27 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 35;
+        spacing = 2;
 
         modules-left = [
-          "hyprland/workspaces"
-          "hyprland/mode"
-        ];
-
-        modules-center = [
-          "hyprland/window"
-        ];
-
-        modules-right = [
+          "hyprland/powermenu"
           "network"
           "cpu"
           "memory"
           "disk"
+        ];
+
+        modules-center = [
+          "hyprland/window"
+          "hyprland/workspaces"
+          "hyprland/mode"
+        ];
+
+        modules-right = [
           "pulseaudio"
           "clock#date"
           "clock#time"
-          "hyprland/powermenu"
         ];
 
         "clock#time" = {
