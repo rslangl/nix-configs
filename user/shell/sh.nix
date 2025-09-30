@@ -47,8 +47,8 @@
     # extra commands to be added to .zprofile
     profileExtra = "[[ \"$(tty)\" == \"/dev/tty1\" ]] && exec Hyprland";
     # extra commands to be added to .zshrc
-    initExtra = "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
-       eval \"$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval --agents ssh ~/.ssh/github --quiet)\"";
+    initContent = "eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
+       eval \"$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval ssh ~/.ssh/github --quiet)\"";
     oh-my-zsh = {
       enable = true;
       plugins = [
