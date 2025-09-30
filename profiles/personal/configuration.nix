@@ -10,6 +10,7 @@
     ../../system/hardware-configuration.nix
     ../../system/hardware/systemd.nix
     ../../system/hardware/kernel.nix
+    ../../system/security/sudo.nix
     ../../system/security/firewall.nix
     ../../system/security/automount.nix
     #../../system/security/sshd.nix
@@ -55,7 +56,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = "user";
-    extraGroups = lib.mkDefault ["wheel" "networkmanager" "video" "audio" "dialout" "input"];
+    extraGroups = ["wheel" "networkmanager" "video" "audio" "dialout" "input"];
     uid = 1000;
   };
 
