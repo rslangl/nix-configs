@@ -80,12 +80,12 @@
       git
       zsh
       cryptsetup
-        home-manager
+      home-manager
       wpa_supplicant
       dconf
       tuigreet
     ];
-  
+
     shells = with pkgs; [zsh];
   };
 
