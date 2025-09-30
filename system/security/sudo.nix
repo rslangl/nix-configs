@@ -1,6 +1,8 @@
-{ pkgs, userSettings, ... }:
-
 {
+  pkgs,
+  userSettings,
+  ...
+}: {
   security.sudo = {
     enable = true;
     execWheelOnly = false;
@@ -13,7 +15,7 @@
         commands = [
           {
             command = "ALL";
-            options = [ "NOPASSWD" ];
+            options = ["NOPASSWD"];
           }
         ];
       }
