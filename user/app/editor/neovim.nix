@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    vimPlugins.nvim-jdtls
-    prettierd
 
     # C/C++
     gcc
@@ -22,6 +20,22 @@
     go
     gopls
     gotools
+
+    # Java
+    # vimPlugins.nvim-jdtls
+    # java-language-server
+    jdk17
+    maven
+    gradle
+    jdt-language-server
+    google-java-format
+    checkstyle
+
+    # Scala
+    coursier
+
+    # Kotlin
+    kotlin-language-server
 
     # Shell
     bash-language-server
@@ -52,10 +66,9 @@
 
     # JS
     nodejs_20
+    prettierd
 
     # Android
-    java-language-server
-    kotlin-language-server
     android-tools
     android-udev-rules
 
