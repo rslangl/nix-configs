@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    vimPlugins.nvim-jdtls
-
     # C/C++
     gcc
     gnumake
@@ -14,10 +12,29 @@
     # Rust
     cargo
     rust-analyzer
+    rustfmt
+    clippy
 
     # Go
     go
     gopls
+    gotools
+
+    # Java
+    # vimPlugins.nvim-jdtls
+    # java-language-server
+    jdk17
+    maven
+    gradle
+    jdt-language-server
+    google-java-format
+    checkstyle
+
+    # Scala
+    coursier
+
+    # Kotlin
+    kotlin-language-server
 
     # Shell
     bash-language-server
@@ -26,6 +43,7 @@
     shfmt
 
     # Terraform
+    terraform
     terraform-ls
 
     # Ansible
@@ -39,25 +57,25 @@
 
     # Nix
     alejandra
+    statix
+
+    # Python
+    isort
+    black
 
     # JS
     nodejs_20
+    prettierd
 
     # Android
-    java-language-server
-    kotlin-language-server
     android-tools
     android-udev-rules
 
     # Docker
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     docker-compose-language-service
   ];
 
-  # home.sessionVariables = {
-  #   EDITOR = "nvim";
-  # };
-  #
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
     owner = "rslangl";
     repo = "nvim";

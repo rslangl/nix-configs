@@ -70,7 +70,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit userSettings systemSettings inputs;
+                inherit pkgs userSettings systemSettings inputs;
               };
               users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
             };
