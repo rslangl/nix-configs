@@ -58,6 +58,10 @@
   #   EDITOR = "nvim";
   # };
   #
+  home.file.".config/nvim".source = builtins.fetchGit {
+    url = "https://github.com/rslangl/nvim.git";
+  };
+
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
