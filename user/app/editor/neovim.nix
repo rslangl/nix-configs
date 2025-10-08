@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     vimPlugins.nvim-jdtls
+    prettierd
 
     # C/C++
     gcc
@@ -14,10 +15,13 @@
     # Rust
     cargo
     rust-analyzer
+    rustfmt
+    clippy
 
     # Go
     go
     gopls
+    gotools
 
     # Shell
     bash-language-server
@@ -26,6 +30,7 @@
     shfmt
 
     # Terraform
+    terraform
     terraform-ls
 
     # Ansible
@@ -39,6 +44,11 @@
 
     # Nix
     alejandra
+    statix
+
+    # Python
+    isort
+    black
 
     # JS
     nodejs_20
@@ -50,14 +60,10 @@
     android-udev-rules
 
     # Docker
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     docker-compose-language-service
   ];
 
-  # home.sessionVariables = {
-  #   EDITOR = "nvim";
-  # };
-  #
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
     owner = "rslangl";
     repo = "nvim";
