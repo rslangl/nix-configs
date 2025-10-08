@@ -117,7 +117,7 @@
         border_size = 2;
         layout = "dwindle";
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "00x595959aa";
+        "col.inactive_border" = "rgba(595959aa)";
         resize_on_border = false;
         allow_tearing = false;
       };
