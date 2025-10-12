@@ -101,6 +101,9 @@
       cmp_luasnip
       luasnip
 
+      # Debugging
+      nvim-dap
+
       # Formatters & linters
       conform-nvim
       nvim-lint
