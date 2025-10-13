@@ -76,12 +76,12 @@
     docker-compose-language-service
   ];
 
-  home.file.".config/nvim".source = pkgs.fetchFromGitHub {
-    owner = "rslangl";
-    repo = "nvim";
-    rev = "25e9f97e1f0a4b380f25e7a2f75d71b04c592a68";
-    sha256 = "sha256-anKSIGB115FSEgACy7BfUAcntNcFqAx80LOivDZTzLI=";
-  };
+  # home.file.".config/nvim".source = pkgs.fetchFromGitHub {
+  #   owner = "rslangl";
+  #   repo = "nvim";
+  #   rev = "2bd4df3a23b4bbfc1194c7c43379b5668899d93f";
+  #   sha256 = "sha256-anKSIGB115FSEgACy7BfUAcntNcFqAx80LOivDZTzLI=";
+  # };
 
   programs.neovim = {
     enable = true;
