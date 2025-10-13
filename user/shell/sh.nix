@@ -22,9 +22,13 @@
     enableCompletion = true;
     autocd = true;
     shellAliases = {
-      ls = "ls --color=auto";
-      la = "ls -la";
-      ll = "ls -l";
+      ls = "eza --icons -l -T -a -L=1";
+      # la = "ls -la";
+      # ll = "ls -l";
+      cat = "bat";
+      htop = "btm";
+      fd = "fd -Lu";
+      w3m = "w3m -no-cookie -v";
       wget = "wget --no-cookie -v --hsts-file=$XDG_CACHE_HOME/wget-hsts";
       sbt = "sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_CONFIG_HOME/sbt";
       mvn = "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml";

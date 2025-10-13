@@ -2,24 +2,10 @@
   description = "Flake config for based heretics";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # home-manager = {
-    #   url = "github:nix-community/home-manager/release-25.05";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
-    #   hyprland-plugins = {
-    #     url = "github:hyprwm/hyprland-plugins";
-    #     inputs.hyprland.follows = "nixpkgs";
-    #   };
-    #   hyprlock = {
-    #     type = "git";
-    #     url = "https://code.hyprland.org/hyprwm/hyprlock.git";
-    #     inputs.nixpkgs.follows = "nixpkgs";
-    #   };
   };
 
   outputs = inputs @ {

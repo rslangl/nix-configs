@@ -30,6 +30,8 @@
       ripgrep
       unzip
       fzf
+      pkg-config
+      openssl
 
       # Office
       zathura # PDF viewer
