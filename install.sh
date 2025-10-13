@@ -74,19 +74,19 @@ else
 fi
 
 # Clone neovim config
-if [[ -d "$NEOVIM_DIR" ]]; then
-  echo "INFO: Neovim config already exists at $NEOVIM_DIR"
+if [[ -d "$NVIM_DIR" ]]; then
+  echo "INFO: Neovim config already exists at $NVIM_DIR"
 
   if confirm "Do you want to replace your existing Neovim config?"; then
-    rm -rf "$NEOVIM_DIR"
-    git clone "$NEOVIM_REPO" "$NEOVIM_DIR"
-    echo "INFO: Cloned Neovim config to $NEOVIM_DIR"
+    rm -rf "$NVIM_DIR"
+    git clone "$NVIM_REPO" "$NVIM_DIR"
+    echo "INFO: Cloned Neovim config to $NVIM_DIR"
   else
     echo "WARN: Skipping Neovim setup"
   fi
 else
-  echo "INFO: Cloning Neovim config into $NEOVIM_DIR..."
-  git clone "$NEOVIM_REPO" "$NEOVIM_DIR"
+  echo "INFO: Cloning Neovim config into $NVIM_DIR..."
+  git clone "$NVIM_REPO" "$NVIM_DIR"
 fi
 
 cd "${DOTFILES_DIR}"

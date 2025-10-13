@@ -25,8 +25,8 @@
     };
 
     userSettings = {
-      username = "user";
-      email = "mailman@kek.net";
+      username = "rslangl";
+      email = "fjellape1447@protonmail.com";
       dotfilesDir = "/home/user/.local/state/dotfiles";
       wm = "hyprland";
       browser = "firefox";
