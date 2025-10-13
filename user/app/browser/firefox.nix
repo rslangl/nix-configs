@@ -49,7 +49,7 @@ _: {
         #   vimium
         # ];
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
         };
       };
     };
