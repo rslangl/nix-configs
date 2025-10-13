@@ -9,6 +9,7 @@
 }: {
   imports = [
     ../app/terminal/wezterm.nix
+    ./cursor.nix
   ];
 
   home.packages = with pkgs; [
@@ -27,27 +28,14 @@
     rofi # TODO: consider moving to a launcher module
   ];
 
-  gtk = {
-    enable = true;
-
-    # NOTE: taken from the wiki
-    #
-    # theme = {
-    #   package = pkgs.flat-remix-gtk;
-    #   name = "Flat-Remix-GTK-Grey-Darkest";
-    # };
-    #
-    # iconTheme = {
-    #   package = pkgs.adwaita-icon-theme;
-    #   name = "Adwaita";
-    # };
-
-    cursorTheme = {
-      package = pkgs.adwaita-icon-theme; # pkgs.quintom-cursor-theme
-      name = "Adwaita";
-      size = 16;
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   cursorTheme = {
+  #     package = pkgs.adwaita-icon-theme; # pkgs.quintom-cursor-theme
+  #     name = "Adwaita";
+  #     size = 16;
+  #   };
+  # };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -124,13 +112,11 @@
       decoration = {
         rounding = 10;
         active_opacity = "1.0";
-        #inactive_border = "1.0";
         shadow = {
           enabled = true;
           range = 4;
           render_power = 3;
           color = "rgba(1a1a1aee)";
-          #color = "#1a1a1aee";
         };
         blur = {
           enabled = true;
