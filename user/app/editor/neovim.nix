@@ -48,6 +48,7 @@
 
     # Ansible
     ansible
+    ansible-language-server
 
     # Lua
     lua-language-server
