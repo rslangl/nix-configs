@@ -19,6 +19,7 @@
     go
     gopls
     gotools
+    golangci-lint
 
     # Java
     # vimPlugins.nvim-jdtls
