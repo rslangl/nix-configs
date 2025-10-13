@@ -13,7 +13,7 @@ _: {
             name = "searx";
             tags = ["search" "searx"];
             keyword = "searx";
-            url = "";
+            url = "https://metasearx.com";
           }
           {
             name = "wikipedia";
