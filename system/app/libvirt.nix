@@ -24,11 +24,4 @@
   };
 
   users.users.${userSettings.username}.extraGroups = lib.mkAfter ["kvm" "libvirtd"];
-
-  #   environment.systemPackages = with pkgs; [
-  #     libvirt
-  #     virt-manager
-  #     qemu
-  #     qemu_kvm
-  #   ];
 }

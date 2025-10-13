@@ -77,6 +77,7 @@
     docker-compose-language-service
   ];
 
+  # NOTE: this turned out to be too painful to manage via nix
   # home.file.".config/nvim".source = pkgs.fetchFromGitHub {
   #   owner = "rslangl";
   #   repo = "nvim";
