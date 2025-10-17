@@ -26,8 +26,9 @@
 
     userSettings = {
       username = "user";
-      email = "fjellape1447@protonmail.com";
+      email = "";
       gitUsername = "rslangl";
+      gitEmail = "";
       dotfilesDir = "/home/user/.local/state/dotfiles";
       wm = "hyprland";
       browser = "firefox";
