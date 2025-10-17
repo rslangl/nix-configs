@@ -7,8 +7,8 @@
 
   programs.git = {
     enable = true;
-    userName = userSettings.username;
-    userEmail = userSettings.email;
+    userName = userSettings.gitUsername;
+    userEmail = userSettings.gitEmail;
     extraConfig = {
       init.defaultBranch = "main";
     };
