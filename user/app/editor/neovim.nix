@@ -22,8 +22,6 @@
     golangci-lint
 
     # Java
-    # vimPlugins.nvim-jdtls
-    # java-language-server
     jdk17
     maven
     gradle
@@ -76,15 +74,22 @@
     # Docker
     dockerfile-language-server
     docker-compose-language-service
-  ];
 
-  # NOTE: this turned out to be too painful to manage via nix
-  # home.file.".config/nvim".source = pkgs.fetchFromGitHub {
-  #   owner = "rslangl";
-  #   repo = "nvim";
-  #   rev = "2bd4df3a23b4bbfc1194c7c43379b5668899d93f";
-  #   sha256 = "sha256-anKSIGB115FSEgACy7BfUAcntNcFqAx80LOivDZTzLI=";
-  # };
+    # Modem control and terminal emulation
+    minicom
+
+    # Needed for ISO handling
+    cdrtools
+
+    # Configuration and policy language
+    kcl
+    open-policy-agent
+
+    # Linter tools
+    yamllint
+    markdownlint-cli
+    tflint
+  ];
 
   programs.neovim = {
     enable = true;
