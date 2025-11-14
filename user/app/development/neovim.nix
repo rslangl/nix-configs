@@ -7,6 +7,7 @@
     automake
     clang
     lld
+    libtool
 
     # Rust
     rustup
