@@ -54,6 +54,19 @@ Clean old builds:
 sudo nix-collect-garbage -d
 ```
 
+### Module-specific
+
+### Development tools
+
+I had some issues using `rustup` and `cargo`, so I decided to only solely install `rustup`. Thus, to install the toolchain and necessary components:
+
+```shell
+rustup toolchain install stable
+rustup component add rustfmt
+rustup component add clippy
+rustup component add rust-analyzer
+```
+
 ## Keybinds
 
 ### Terminal
