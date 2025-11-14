@@ -1,19 +1,16 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # C/C++
-    gcc
     gnumake
     cmake
     autoconf
     automake
+    clang
+    lld
     libtool
-    clang-tools
 
     # Rust
-    cargo
-    rust-analyzer
-    rustfmt
-    clippy
+    #rustup
 
     # Go
     go
@@ -47,7 +44,6 @@
 
     # Ansible
     ansible
-    ansible-language-server
 
     # Lua
     lua-language-server
@@ -69,7 +65,6 @@
 
     # Android
     android-tools
-    android-udev-rules
 
     # Docker
     dockerfile-language-server

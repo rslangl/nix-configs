@@ -54,6 +54,15 @@ Clean old builds:
 sudo nix-collect-garbage -d
 ```
 
+### Module-specific remarks
+
+### Rust
+
+I had some issues using `rustup` and `cargo`, where during the build process some executables were not found.
+Rust installed via rustup or home-manager on NixOS often fails because its binaries assume standard Linux
+library paths, which NixOS isolates. Using a Nix devShell or flake ensures all Rust tools run correctly within
+Nix’s reproducible environment.
+
 ## Keybinds
 
 ### Terminal
