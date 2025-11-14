@@ -1,13 +1,12 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # C/C++
-    gcc
     gnumake
     cmake
     autoconf
     automake
-    libtool
-    clang-tools
+    clang
+    lld
 
     # Rust
     rustup
