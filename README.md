@@ -58,7 +58,8 @@ sudo nix-collect-garbage -d
 
 ### Development tools
 
-I had some issues using `rustup` and `cargo`, so I decided to only solely install `rustup`. Thus, to install the toolchain and necessary components:
+I had some issues using `rustup` and `cargo`, so I decided to only solely install `rustup`.
+Thus, to install the toolchain and necessary components:
 
 ```shell
 rustup toolchain install stable
