@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-
     # C/C++
     gcc
     gnumake
@@ -11,7 +10,6 @@
     clang-tools
 
     # Rust
-    cargo
     rustup
 
     # Go
