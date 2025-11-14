@@ -11,7 +11,7 @@
     (./. + "../../../user/wm" + ("/" + userSettings.wm) + ".nix")
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
-    ../../user/app/editor/neovim.nix
+    ../../user/app/development/neovim.nix
     ../../user/app/git/git.nix
     ../../user/app/pwmgr/keepass.nix
     ../../user/app/browser/firefox.nix

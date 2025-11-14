@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+
     # C/C++
     gcc
     gnumake
@@ -11,9 +12,7 @@
 
     # Rust
     cargo
-    rust-analyzer
-    rustfmt
-    clippy
+    rustup
 
     # Go
     go
