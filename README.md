@@ -58,15 +58,10 @@ sudo nix-collect-garbage -d
 
 ### Rust
 
-I had some issues using `rustup` and `cargo`, so I decided to only solely install `rustup`.
-Thus, to install the toolchain and necessary components:
-
-```shell
-rustup toolchain install stable
-rustup component add rustfmt
-rustup component add clippy
-rustup component add rust-analyzer
-```
+I had some issues using `rustup` and `cargo`, where during the build process some executables were not found.
+Rust installed via rustup or home-manager on NixOS often fails because its binaries assume standard Linux
+library paths, which NixOS isolates. Using a Nix devShell or flake ensures all Rust tools run correctly within
+Nix’s reproducible environment.
 
 ## Keybinds
 
