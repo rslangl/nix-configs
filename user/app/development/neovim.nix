@@ -43,7 +43,6 @@
 
     # Ansible
     ansible
-    ansible-language-server
 
     # Lua
     lua-language-server
@@ -65,7 +64,6 @@
 
     # Android
     android-tools
-    android-udev-rules
 
     # Docker
     dockerfile-language-server
