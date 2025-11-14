@@ -10,7 +10,7 @@
     libtool
 
     # Rust
-    rustup
+    #rustup
 
     # Go
     go
