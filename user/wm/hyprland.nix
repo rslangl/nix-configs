@@ -39,7 +39,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprland;
+    package = inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {

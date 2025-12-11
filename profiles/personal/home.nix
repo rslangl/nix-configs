@@ -50,6 +50,7 @@
       # Utils
       keychain # SSH key manager
       zoxide # smarter `cd` app
+      file
     ];
     sessionVariables = {
       EDITOR = userSettings.editor;
