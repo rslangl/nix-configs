@@ -117,8 +117,8 @@
       nvim-treesitter
 
       # Language-specific
-      rustaceanvim
       go-nvim
+      nvim-jdtls
     ];
   };
 }
