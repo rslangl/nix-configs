@@ -56,7 +56,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = "user";
-    extraGroups = ["wheel" "networkmanager" "video" "audio" "dialout" "input"];
+    extraGroups = ["wheel" "networkmanager" "video" "audio" "dialout" "input" "adbusers"];
     uid = 1000;
   };
 

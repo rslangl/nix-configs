@@ -12,13 +12,14 @@
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
     ../../user/app/development/neovim.nix
+    ../../user/app/development/android.nix
     ../../user/app/git/git.nix
     ../../user/app/pwmgr/keepass.nix
     ../../user/app/browser/firefox.nix
   ];
 
   home = {
-    stateVersion = "25.05";
+    stateVersion = "25.11";
     inherit (userSettings) username;
     homeDirectory = "/home/" + userSettings.username;
     packages = with pkgs; [
@@ -52,6 +53,7 @@
       zoxide # smarter `cd` app
       file
     ];
+
     sessionVariables = {
       EDITOR = userSettings.editor;
       TERM = userSettings.term;

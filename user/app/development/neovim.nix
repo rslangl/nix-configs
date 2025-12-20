@@ -9,9 +9,6 @@
     lld
     libtool
 
-    # Rust
-    #rustup
-
     # Go
     go
     gopls
@@ -19,7 +16,7 @@
     golangci-lint
 
     # Java
-    jdk17
+    jdk21
     maven
     gradle
     jdt-language-server
@@ -31,6 +28,7 @@
 
     # Kotlin
     kotlin-language-server
+    ktlint
 
     # Shell
     bash-language-server
@@ -65,6 +63,7 @@
 
     # Android
     android-tools
+    # androidsdk
 
     # Docker
     dockerfile-language-server
