@@ -18,8 +18,11 @@
     ../../user/app/browser/firefox.nix
   ];
 
+  android.enable = true;
+  #programs.adb.enable = true;
+
   home = {
-    stateVersion = "25.05";
+    stateVersion = "25.11";
     inherit (userSettings) username;
     homeDirectory = "/home/" + userSettings.username;
     packages = with pkgs; [
@@ -53,6 +56,7 @@
       zoxide # smarter `cd` app
       file
     ];
+
     sessionVariables = {
       EDITOR = userSettings.editor;
       TERM = userSettings.term;
