@@ -15,17 +15,18 @@ let
   SDKroot = "${androidComposition.androidsdk}/libexec/android-sdk";
 in
 {
-  options.android = {
-      enable = lib.mkEnableOption "Android tooling";
-  };
+  # options.android = {
+  #     enable = lib.mkEnableOption "Android tooling";
+  # };
 
-  config = lib.mkIf config.android.enable {
+  # config = lib.mkIf config.android.enable {
 
     home.packages = [
       androidComposition.androidsdk
     ];
 
     home.sessionVariables = {
+      ANDROID_HOME = SDKroot;
       ANDROID_SDK_ROOT = SDKroot;
     };
 
@@ -33,6 +34,6 @@ in
       "${SDKroot}/cmdline-tools/latest/bin"
       "${SDKroot}/platform-tools"
     ];
-  };
+  # };
 
 }

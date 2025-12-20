@@ -18,7 +18,7 @@
     ../../user/app/browser/firefox.nix
   ];
 
-  android.enable = true;
+  # android.enable = true;
   #programs.adb.enable = true;
 
   home = {
