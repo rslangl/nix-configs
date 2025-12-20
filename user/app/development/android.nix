@@ -1,7 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-# Compose minimal Android SDK + tools, as the entirety of androidsdk
-# took too much space
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  # Compose minimal Android SDK + tools, as the entirety of androidsdk
+  # took too much space
   androidComposition = pkgs.androidenv.composeAndroidPackages {
     platformVersions = ["36"];
     platformToolsVersion = ["36.0.0"];
@@ -13,27 +17,18 @@ let
     toolsVersion = "26.1.1";
   };
   SDKroot = "${androidComposition.androidsdk}/libexec/android-sdk";
-in
-{
-  # options.android = {
-  #     enable = lib.mkEnableOption "Android tooling";
-  # };
+in {
+  home.packages = [
+    androidComposition.androidsdk
+  ];
 
-  # config = lib.mkIf config.android.enable {
+  home.sessionVariables = {
+    ANDROID_HOME = SDKroot;
+    ANDROID_SDK_ROOT = SDKroot;
+  };
 
-    home.packages = [
-      androidComposition.androidsdk
-    ];
-
-    home.sessionVariables = {
-      ANDROID_HOME = SDKroot;
-      ANDROID_SDK_ROOT = SDKroot;
-    };
-
-    home.sessionPath = [
-      "${SDKroot}/cmdline-tools/latest/bin"
-      "${SDKroot}/platform-tools"
-    ];
-  # };
-
+  home.sessionPath = [
+    "${SDKroot}/cmdline-tools/latest/bin"
+    "${SDKroot}/platform-tools"
+  ];
 }

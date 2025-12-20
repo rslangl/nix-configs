@@ -18,9 +18,6 @@
     ../../user/app/browser/firefox.nix
   ];
 
-  # android.enable = true;
-  #programs.adb.enable = true;
-
   home = {
     stateVersion = "25.11";
     inherit (userSettings) username;
