@@ -18,17 +18,17 @@
   };
   SDKroot = "${androidComposition.androidsdk}/libexec/android-sdk";
 in {
-  home.packages = [
-    androidComposition.androidsdk
-  ];
-
-  home.sessionVariables = {
-    ANDROID_HOME = SDKroot;
-    ANDROID_SDK_ROOT = SDKroot;
+  home = {
+    packages = [
+      androidComposition.androidsdk
+    ];
+    sessionVariables = {
+      ANDROID_HOME = SDKroot;
+      ANDROID_SDK_ROOT = SDKroot;
+    };
+    sessionPath = [
+      "${SDKroot}/cmdline-tools/latest/bin"
+      "${SDKroot}/platform-tools"
+    ];
   };
-
-  home.sessionPath = [
-    "${SDKroot}/cmdline-tools/latest/bin"
-    "${SDKroot}/platform-tools"
-  ];
 }
