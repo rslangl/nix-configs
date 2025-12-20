@@ -150,7 +150,7 @@ Nix’s reproducible environment. For reference, the flake currently looks like 
 * `SUPER+SHIFT+j`: Resize window down
 * `SUPER+SHIFT+k`: Resize window up
 * `SUPER+SHIFT+l`: Resize window right
-* TODO: audio, volume increase/decrease/mute
+
 
 ## References
 

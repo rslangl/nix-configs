@@ -12,6 +12,7 @@
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
     ../../user/app/development/neovim.nix
+    ../../user/app/development/android.nix
     ../../user/app/git/git.nix
     ../../user/app/pwmgr/keepass.nix
     ../../user/app/browser/firefox.nix
