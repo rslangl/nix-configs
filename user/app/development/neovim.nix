@@ -9,6 +9,13 @@
     lld
     libtool
 
+    # zig
+    zig_0_14
+    zig-zlint
+    zls
+    # zls_0_15
+    # zls_0_14
+
     # Go
     go
     gopls

@@ -39,19 +39,25 @@
       xournalpp # handwriting notetaking app
       libreoffice
 
-      # Media
+      # Misc
       mpv # video playback
-      sxiv # image viewer
       telegram-desktop
       signal-desktop
       vesktop # custom Discord desktop app
       grimblast # screen capture
       yt-dlp
-
-      # Utils
       keychain # SSH key manager
       zoxide # smarter `cd` app
       file
+      superfile # file explorer
+      weechat # IRC client
+      timg # image and video viewer
+
+      # Libs
+      zlib
+      bzip2
+      ncurses
+      libpng
     ];
 
     sessionVariables = {

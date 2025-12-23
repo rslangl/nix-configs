@@ -10,11 +10,10 @@
     platformVersions = ["36"];
     platformToolsVersion = ["36.0.0"];
     buildToolsVersions = ["36.0.0"];
-    abiVersions = ["x86_64" "arm64-v8a"];
+    abiVersions = ["x86_64"];
     includeEmulator = false;
     includeSystemImages = false;
     includeNDK = false;
-    toolsVersion = "26.1.1";
   };
   SDKroot = "${androidComposition.androidsdk}/libexec/android-sdk";
 in {
