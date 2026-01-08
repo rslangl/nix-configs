@@ -26,5 +26,6 @@
     numbat
     nmap
     dig
+    direnv
   ];
 }
