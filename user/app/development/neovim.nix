@@ -125,6 +125,9 @@
       # Language-specific
       go-nvim
       nvim-jdtls
+
+      # Utils
+      plenary-nvim
     ];
   };
 }
