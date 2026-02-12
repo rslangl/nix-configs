@@ -12,7 +12,7 @@
     # zig
     zig_0_14
     zig-zlint
-    zls
+    #zls
     # zls_0_15
     # zls_0_14
 
