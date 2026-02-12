@@ -31,7 +31,7 @@
     checkstyle
 
     # D
-    dmd
+    #dmd
 
     # Scala
     coursier
