@@ -27,5 +27,6 @@
     nmap
     dig
     direnv
+    nix-direnv
   ];
 }

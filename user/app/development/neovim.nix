@@ -30,6 +30,9 @@
     google-java-format
     checkstyle
 
+    # D
+    dmd
+
     # Scala
     coursier
 
