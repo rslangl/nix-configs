@@ -44,6 +44,7 @@
       inherit system;
       config = {
         allowUnfree = true;
+        allowInsecurePredicate = pkg: false;
         android_sdk.accept_license = true;
       };
     };

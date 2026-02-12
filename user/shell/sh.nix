@@ -79,7 +79,8 @@
     # extra commands to be added to .zshrc
     initContent = "
       eval \"$(zoxide init zsh)\" > /dev/null 2>&1\n
-      eval \"$(keychain --eval github --quiet)\"
+      eval \"$(keychain --eval github --quiet)\"\n
+      eval \"$(direnv hook zsh)\"
     ";
     oh-my-zsh = {
       enable = true;
@@ -87,6 +88,7 @@
         "git"
         "sudo"
         "fzf"
+        "direnv"
       ];
       theme = "bira";
     };

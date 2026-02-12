@@ -12,7 +12,7 @@
     # zig
     zig_0_14
     zig-zlint
-    zls
+    #zls
     # zls_0_15
     # zls_0_14
 
@@ -29,6 +29,9 @@
     jdt-language-server
     google-java-format
     checkstyle
+
+    # D
+    #dmd
 
     # Scala
     coursier

@@ -39,6 +39,13 @@ sudo nixos-rebuild build --flake /etc/nixos/#system
 ./result/bin/switch-to-configuration test
 ```
 
+To check the diff after rebuilding:
+
+```shell
+nix shell nixpkgs#nvd
+nvd diff /run/current-system ./result
+```
+
 ### Cleanup
 
 View generations:
@@ -52,6 +59,21 @@ Clean old builds:
 
 ```shell
 sudo nix-collect-garbage -d
+```
+
+### Security scans
+
+After a rebuild, the full dependency closure can be found with:
+
+```shell
+nix-store -qR ./result
+```
+
+Scan with a real security scanner:
+
+```shell
+nix shell nixpkgs#grype
+grype dir:./result
 ```
 
 ### Module-specific remarks
